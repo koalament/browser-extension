@@ -1,0 +1,42 @@
+{
+  "name": "Koalament",
+  "version": "0.0.2",
+  "manifest_version": 2,
+  "description": "Koala open comment",
+  "homepage_url": "https://koalament.io",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Koalament",
+    "default_icon": "koala.png"
+  },
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "js": [
+        "hashes.js",
+        "moneybutton.js",
+        "socket.io.js",
+        "jquery.js",
+        "popup.js",
+        "moment.js"
+      ],
+      "all_frames": true
+    }
+  ]
+}

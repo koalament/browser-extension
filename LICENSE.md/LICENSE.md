@@ -10,6 +10,7 @@ furnished to do so, subject to the following conditions:
 
 1 - The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
+
 2 - The Software, and any software that is derived from the Software or parts thereof,
 can only be used on the Bitcoin SV blockchains. The Bitcoin SV blockchains are defined,
 for purposes of this license, as the Bitcoin blockchain containing block height #556767
@@ -54,5 +55,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
 3. The data created by the software has to comply with the provided standard by the Koalament team which is as follows:
 Koalament <format> <message> <> 
