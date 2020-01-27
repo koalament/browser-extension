@@ -30,7 +30,9 @@ function makeSingleCommentSpan(comment) {
 	return `<span>${comment.text}</span><span style="color: gray;font-size: 0.7em;">${date.fromNow()}<a target="_blank" href="${`https://whatsonchain.com/tx/${comment.tx_id}`}">✓</a></span>`
 }
 function onComment(comment) {
-	$("#koalament_comments").prepend(makeSingleCommentSpan(comment) + "<hr/>")
+	$("#koalament_comments").append("<hr/>" + makeSingleCommentSpan(comment));
+	var objDiv = document.getElementById("koalament_comments");
+	objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 function makeCommentsHtml(json) {
@@ -45,6 +47,8 @@ function makeCommentsHtml(json) {
 	}
 	content += '<div style="text-align:center"><span>Your comment</span><span><form><textarea id="message" class="tohex" rows="10" cols="30" style="width:70%;height:50px;"></textarea></form></span><div id="button-here"></div>';
 	htmlContent.innerHTML = content;
+	var objDiv = document.getElementById("koalament_comments");
+	objDiv.scrollTop = objDiv.scrollHeight;
 	$(".tohex").on("change keyup paste", function () {
 		var data = { url: document.location.href, text: $(this).val() };
 		var div = document.getElementById('button-here');
@@ -86,8 +90,6 @@ var fetchData = function () {
 }
 socket.on(btoa(document.location.href + "_test"), onComment)
 function dc() {
-	socket.off(btoa(document.location.href + "_test"), onComment);
-	socket.disconnect();
 	socket.close();
 }
 var show = function () {
