@@ -1,0 +1,31 @@
+{
+  "name": "koalament-extension-chrome",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "build-dev": "rm build -rf && mkdir build && browserify inject.js -o bundle.js && mv bundle.js build/ && cp background.js manifest.json koala.png build/",
+    "build": "rm build -rf && mkdir build && browserify inject.js -o bundle.js && mv bundle.js build/ && minify build/bundle.js -d build/ && cp background.js manifest.json koala.png build/ && cd ./build && zip koalament.zip *",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koalament/extension-chrome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koalament/extension-chrome/issues"
+  },
+  "homepage": "https://github.com/koalament/extension-chrome#readme",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "node-gzip": "^1.1.2",
+    "socket.io-client": "^2.3.0",
+    "sweetalert2": "^9.7.1"
+  },
+  "devDependencies": {
+    "babel-minify": "^0.5.1"
+  }
+}

@@ -15,28 +15,6 @@
     "default_icon": "koala.png"
   },
   "permissions": [
-    "https://*/*",
-    "http://*/*",
-    "tabs"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ],
-      "css": [
-        "style.css"
-      ],
-      "js": [
-        "hashes.js",
-        "moneybutton.js",
-        "socket.io.js",
-        "jquery.js",
-        "popup.js",
-        "moment.js"
-      ],
-      "all_frames": true
-    }
+    "activeTab"
   ]
 }

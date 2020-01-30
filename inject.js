@@ -1,5 +1,12 @@
 var socket_address = 'https://nap.koalament.io'
+var gzip = require('node-gzip').gzip;
+var io = require("socket.io-client");
+var Swal = require("sweetalert2").default;
+var moment = require("moment");
+var $ = require("jquery");
 var socket = io.connect(socket_address, { reconnection: false });
+var moneyButton = require('./money-button');
+
 socket.on("error_on_read", function (error) {
 	alert(JSON.stringify(error));
 })
@@ -27,7 +34,7 @@ function toHex(str) {
 }
 function makeSingleCommentSpan(comment) {
 	var date = moment(comment.created_at);
-	return `<span>${comment.text}</span><span style="color: gray;font-size: 0.7em;">${date.fromNow()}<a target="_blank" href="${`https://whatsonchain.com/tx/${comment.tx_id}`}">✓</a></span>`
+	return '<span>' + comment.text + '</span><span style="color: gray;font-size: 0.7em;">' + date.fromNow() + '<a target="_blank" href="https://whatsonchain.com/tx/' + comment._txid + '">🔗</a></span>'
 }
 function onComment(comment) {
 	$("#koalament_comments").append("<hr/>" + makeSingleCommentSpan(comment));
@@ -37,11 +44,11 @@ function onComment(comment) {
 
 function makeCommentsHtml(json) {
 	var htmlContent = document.getElementById("swal2-content");
-	var content = `<div id="koalament_comments" style="text-align: left;height: 200px;overflow-y: scroll;">`
+	var content = '<div id="koalament_comments" style="text-align: left;height: 200px;overflow-y: scroll;"';
 	if (json && json.results && json.results.length > 0) {
-		content += `${json.results.map(p => {
+		content += json.results.map(function (p) {
 			return makeSingleCommentSpan(p)
-		}).join("<hr/>")}</div><br/></div>`;
+		}).join("<hr/>") + '</div><br/></div>';
 	} else {
 		content += '<div style="text-align:center;">Be the first one who comment on this page!</div></div><hr/>';
 	}
@@ -50,45 +57,48 @@ function makeCommentsHtml(json) {
 	var objDiv = document.getElementById("koalament_comments");
 	objDiv.scrollTop = objDiv.scrollHeight;
 	$(".tohex").on("change keyup paste", function () {
-		var data = { url: document.location.href, text: $(this).val() };
+		var data = { key: document.location.href, text: $(this).val() };
 		var div = document.getElementById('button-here');
-		moneyButton.render(div, {
-			label: "Send",
-			clientIdentifier: "36a0fd92080022d9234e610de329e13d",
-			buttonId: "234325",
-			outputs: [
-				{
-					to: '14781',
-					amount: '0.005',
-					currency: 'USD'
-				},
-				{
-					script: 'OP_FALSE OP_RETURN ' + toHex(`koalament test comment plain ${JSON.stringify(data)}`),
-					amount: '0',
-					currency: 'USD'
-				}
-			],
-			onPayment: function (arg) {
-				$(".tohex").val("");
-				if (arg && arg.txid) {
-					socket.emit("send", {
-						tx_id: arg.txid,
-						data: data
-					});
-				}
-			},
-			onError: function (arg) { console.log('onError', arg) }
-		})
+		gzip(Buffer.from('0 ' + JSON.stringify(data), "utf-8"))
+			.then(function (compressed) {
+				moneyButton.render(div, {
+					label: "Send",
+					clientIdentifier: "36a0fd92080022d9234e610de329e13d",
+					buttonId: "234325",
+					outputs: [
+						{
+							to: '14781',
+							amount: '0.005',
+							currency: 'USD'
+						},
+						{
+							script: 'OP_FALSE OP_RETURN ' + toHex('koalament 1 gzip ' + compressed.toString("base64")),
+							amount: '0',
+							currency: 'USD'
+						}
+					],
+					onPayment: function (arg) {
+						$(".tohex").val("");
+						if (arg && arg.txid) {
+							socket.emit("send", {
+								tx_id: arg.txid,
+								data: data
+							});
+						}
+					},
+					onError: function (arg) { console.log('onError', arg) }
+				})
+			})
 	})
 }
 var fetchData = function () {
 	socket.emit("read", {
-		url: document.location.href,
+		key: document.location.href,
 		from: 0,
 		limit: 100
 	})
 }
-socket.on(btoa(document.location.href + "_test"), onComment)
+socket.on(btoa(document.location.href + "_1"), onComment)
 function dc() {
 	socket.close();
 }
@@ -98,10 +108,10 @@ var show = function () {
 		title: 'Comments',
 		showConfirmButton: false,
 		html: "<div>Loading...</div>",
-		onRender: () => {
+		onRender: function () {
 			fetchData();
 		},
-		onClose: () => {
+		onClose: function () {
 			dc();
 		}
 	})
