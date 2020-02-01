@@ -79,14 +79,11 @@ function makeCommentsHtml(json) {
 					],
 					onPayment: function (arg) {
 						$(".tohex").val("");
-						if (arg && arg.txid) {
-							socket.emit("send", {
-								tx_id: arg.txid,
-								data: data
-							});
+						if (!arg || !arg.txid) {
+							alert("Something went wrong!")
 						}
 					},
-					onError: function (arg) { console.log('onError', arg) }
+					onError: function (arg) { alert("Something went wrong!"); console.log('onError', arg) }
 				})
 			})
 	})
