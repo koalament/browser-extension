@@ -1,6 +1,6 @@
 <form action="" method="POST" (submit)="submitEvent($event)">
     <div class="input">
-        <input type="text" name="nickname" id="nickname" placeholder="{{placeholder}}" [(ngModel)]="nickname">
-        <input type="submit" value="next">
+        <input type="text" name="theInput" id="theInput" placeholder="{{placeholder}}" [(ngModel)]="value">
+        <input type="submit" [value]="submitValue">
     </div>
 </form>

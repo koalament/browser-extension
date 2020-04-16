@@ -7,8 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class InputTextComponent implements OnInit {
   @Input('placeholder')placeholder : string = "";
+  @Input('submitValue')submitValue: string = "submit";
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
-  nickname: string = "";
+  value: string = "";
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class InputTextComponent implements OnInit {
   }
 
   submitEvent(e:Event){
-    this.onSubmit.emit(this.nickname);
+    this.onSubmit.emit(this.value);
     e.preventDefault();
   }
 
