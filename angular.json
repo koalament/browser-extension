@@ -25,7 +25,9 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json",
+              "src/background.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -123,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "koalament"
+    }
+  },
+  "defaultProject": "koalament",
+  "cli": {
+    "analytics": "db550bf7-3221-4a4d-9af8-f9a1167db184"
+  }
 }

@@ -1,0 +1,14 @@
+img {
+    margin: 118px auto 0;
+    display: block;
+}
+p{
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 20px;
+    
+    &.shadow{
+        color: #828282;
+        margin-top: 8px;
+    }
+}

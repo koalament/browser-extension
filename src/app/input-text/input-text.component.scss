@@ -1,0 +1,45 @@
+form {
+    display: block;
+    padding: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 16px * 2);
+}
+div.input {
+    background: #f1f1f1;
+    border: 1px solid #e9b200;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 34px;
+    width: 100%;
+
+    input[type="text"] {
+        border: 0;
+        background: inherit;
+        height: 34px;
+        width: calc(100% - 40px - 16px - 8px * 2);
+        padding: 0 8px;
+
+        &:focus {
+            bottom: 0;
+            outline: 0;
+        }
+    }
+    input[type="submit"] {
+        font-weight: bold;
+        font-size: 14px;
+        width: calc(40px + 16px);
+        height: 100%;
+        border: 0;
+        background: inherit;
+        padding: 8px;
+        cursor: pointer;
+
+        &:focus {
+            bottom: 0;
+            outline: 0;
+        }
+    }
+}
