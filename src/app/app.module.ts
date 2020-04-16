@@ -6,12 +6,14 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { NoCommentComponent } from './no-comment/no-comment.component';
 import { InputTextComponent } from './input-text/input-text.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NoCommentComponent,
-    InputTextComponent
+    InputTextComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
