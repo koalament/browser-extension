@@ -7,10 +7,11 @@ import { NewComment } from './new-comment/newComment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'koalament';
+  title: string = 'koalament';
+  newComment: NewComment | null = null;
 
   onNameSubmit(name: string) {
-    let newComment = new NewComment(name);
-    newComment.test();
+    this.newComment = new NewComment(name);
+    this.newComment.test();
   }
 }
