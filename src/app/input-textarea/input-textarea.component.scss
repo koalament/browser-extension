@@ -52,4 +52,17 @@ div.input {
             outline: 0;
         }
     }
+
+    footer{
+        display: inline-block;
+        width: calc(100% - 110px - 8px * 2 - 8px * 2);
+        margin: 8px;
+        margin-top: 26px;
+
+        .counter{
+            text-align: right;
+            font-size: 10px;
+            color: #828282;
+        }
+    }
 }

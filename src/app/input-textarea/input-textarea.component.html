@@ -1,7 +1,11 @@
 <form action="" method="POST" (submit)="submitEvent($event)">
     <div class="input">
         <label for="theText">{{label}}</label>
-        <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value"></textarea>
+        <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value" (keydown)="countLength($event)" dir="auto"></textarea>
+        <footer>
+            <div class="counter">{{value.length}} / {{maxLength}}</div>
+        </footer>
         <app-input-textarea-button label="POST"></app-input-textarea-button>
     </div>
+    <div style="clear:both"></div>
 </form>
