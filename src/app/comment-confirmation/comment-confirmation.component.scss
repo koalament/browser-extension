@@ -1,0 +1,61 @@
+.cover {
+    background: #0000009c;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div.container {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 1px;
+    width: calc(100% - 2px);
+    background: #fff;
+    border-radius: 5px 5px 0px 0px;
+    margin: 0 auto;
+}
+
+div.header {
+    line-height: 56px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+
+    .mini-logo {
+        height: 32px;
+        width: auto;
+        vertical-align: middle;
+    }
+}
+.body {
+    padding: 16px;
+
+    .comment {
+        width: calc(100% - 18px * 2);
+        background: #f9f9f9;
+        border-radius: 25px 25px 25px 0px;
+        padding: 18px;
+
+        h1 {
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 21px;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        p {
+            margin: 8px 0;
+        }
+    }
+
+    .moneyBtnHere{
+        width: 154px;
+        display: block;
+        margin: 16px auto;
+        overflow: hidden;
+    }
+}
