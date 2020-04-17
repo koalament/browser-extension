@@ -8,7 +8,8 @@ import { NewComment } from './new-comment/newComment';
 })
 export class AppComponent {
   title: string = 'koalament';
-  newComment: NewComment | null = null;
+  // newComment: NewComment | null = null;
+  newComment: NewComment | null = new NewComment('milad');
 
   onNameSubmit(name: string) {
     this.newComment = new NewComment(name);

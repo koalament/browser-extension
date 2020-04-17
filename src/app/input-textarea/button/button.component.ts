@@ -16,9 +16,9 @@ export class ButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges() {
-    let charge = Math.floor(this.stringLength) * 0.01;
-    this.priceString = `$${charge.toFixed(2)}`
-  }
+  // ngOnChanges() {
+  //   // let charge = Math.floor(this.stringLength) * 0.01;
+  //   // this.priceString = `$${charge.toFixed(2)}`
+  // }
 
 }
