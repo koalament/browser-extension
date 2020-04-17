@@ -1,6 +1,9 @@
 <!-- <router-outlet></router-outlet> -->
 <app-header></app-header>
 <app-no-comment></app-no-comment>
-<app-input-text *ngIf="newComment == null" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)" submitValue="Next"></app-input-text>
-<app-input-textarea *ngIf="newComment != null" placeholder="Write your comment..." [label]="newComment.name">
+<app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)"
+    submitValue="Next"></app-input-text>
+<app-input-textarea *ngIf="state == 'comment'" placeholder="Write your comment..." [label]="newComment.name"
+    (onSubmit)="onCommentSubmit($event)">
 </app-input-textarea>
+<app-comment-confirmation *ngIf="state == 'pay'" name="{{newComment.name}}" content="{{newComment.content}}"></app-comment-confirmation>
