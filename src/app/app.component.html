@@ -2,5 +2,5 @@
 <app-header></app-header>
 <app-no-comment></app-no-comment>
 <app-input-text *ngIf="newComment == null" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)" submitValue="Next"></app-input-text>
-<app-input-textarea *ngIf="newComment != null" placeholder="Write your comment..." (onSubmit)="onNameSubmit($event)" [label]="newComment.name">
+<app-input-textarea *ngIf="newComment != null" placeholder="Write your comment..." [label]="newComment.name">
 </app-input-textarea>
