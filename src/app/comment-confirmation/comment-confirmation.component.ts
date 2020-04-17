@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import * as moneyButton from "./money-button.js";
 
 @Component({
@@ -9,6 +9,8 @@ import * as moneyButton from "./money-button.js";
 export class CommentConfirmationComponent implements OnInit {
 
   @ViewChild('moneyBtnHere') moneyBtnHere;
+  @Input() name: string;
+  @Input() content: string;
 
   constructor() { }
 
@@ -32,7 +34,7 @@ export class CommentConfirmationComponent implements OnInit {
       onPayment: function (arg) {
         console.log(arg);
       },
-      onError: function (arg) { 
+      onError: function (arg) {
         // alert("Something went wrong!"); console.log('onError', arg) 
       }
     })
