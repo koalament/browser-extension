@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class InputTextareaComponent implements OnInit {
 
   @Input('placeholder') placeholder: string = "";
+  @Input('label') label: string = "name";
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   value: string = "";
 

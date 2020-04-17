@@ -12,26 +12,32 @@ div.input {
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
-    height: 34px;
+    height: 88px;
     width: 100%;
 
-    input[type="text"] {
+    textarea {
         border: 0;
         background: inherit;
-        height: 34px;
+        height: 88px;
         width: calc(100% - 40px - 16px - 8px * 2);
-        padding: 0 8px;
+        padding: 8px;
+        resize: none;
+        float: left;
+        // display: inline-block;
 
         &:focus {
             bottom: 0;
             outline: 0;
         }
     }
-    input[type="submit"] {
+
+    label {
+        float: left;
+        // display: inline-block;
         font-weight: bold;
         font-size: 14px;
-        width: calc(40px + 16px);
-        height: 100%;
+        width: calc(40px);
+        // height: 100%;
         border: 0;
         background: inherit;
         padding: 8px;
