@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+
 import * as moneyButton from "./money-button.js";
+import * as theGzip from "./gzip.js";
+import { Buffer } from 'buffer';
+
+const doc = window.document;
+
 
 @Component({
   selector: 'app-comment-confirmation',
@@ -15,32 +21,54 @@ export class CommentConfirmationComponent implements OnInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    moneyButton.render(this.moneyBtnHere.nativeElement, {
-      label: "Send",
-      clientIdentifier: "36a0fd92080022d9234e610de329e13d",
-      buttonId: "234325",
-      outputs: [
-        {
-          to: '14781',
-          amount: '0.005',
-          currency: 'USD'
+    // let key = doc.location;
+    let key = "https://koalament.io";
+    let data = { nickname: this.name, key: key, text: this.content };
+    let isReply = false;
+
+    theGzip.gzip(Buffer.from((!isReply ? '0' : '1') + ' ' + JSON.stringify(data), "utf-8")).then(compressed => {
+      moneyButton.render(this.moneyBtnHere.nativeElement, {
+        label: "Send",
+        clientIdentifier: "36a0fd92080022d9234e610de329e13d",
+        buttonId: "234325",
+        outputs: [
+          {
+            to: '14781',
+            amount: '0.005',
+            currency: 'USD'
+          },
+          {
+            script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 2 gzip ' + compressed.toString("base64")),
+            amount: '0',
+            currency: 'USD'
+          }
+        ],
+        onPayment: function (arg) {
+          console.log(arg);
         },
-        {
-          script: 'OP_FALSE OP_RETURN ' + 'test',
-          amount: '0',
-          currency: 'USD'
+        onError: function (arg) {
+          // alert("Something went wrong!"); console.log('onError', arg) 
         }
-      ],
-      onPayment: function (arg) {
-        console.log(arg);
-      },
-      onError: function (arg) {
-        // alert("Something went wrong!"); console.log('onError', arg) 
-      }
-    })
+      })
+    });
   }
 
   ngOnInit() {
   }
 
+  toHex(str) {
+    var hex = undefined;
+    try {
+      hex = unescape(encodeURIComponent(str))
+        .split('').map(function (v) {
+          return v.charCodeAt(0).toString(16)
+        }).join('')
+    } catch (e) {
+
+      hex = str
+      console.log('invalid text input: ' + str)
+    }
+    return hex
+
+  }
 }
