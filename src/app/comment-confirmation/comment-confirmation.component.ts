@@ -73,7 +73,12 @@ export class CommentConfirmationComponent implements OnInit {
 
   }
 
-  close() {
+  close(e) {
     this.onClose.emit();
+  }
+
+  prevent(e: Event) {
+    e.stopPropagation();
+    return;
   }
 }
