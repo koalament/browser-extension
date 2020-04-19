@@ -35,6 +35,7 @@ export class AppComponent {
   }
 
   onSuccessPayment(event: any) {
+    this.newComment = new NewComment(this.newComment.name);
     this.changeState('standby');
   }
 }
