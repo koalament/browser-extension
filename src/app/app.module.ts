@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { InputTextareaComponent } from './input-textarea/input-textarea.component';
 import { ButtonComponent } from './input-textarea/button/button.component';
 import { CommentConfirmationComponent } from './comment-confirmation/comment-confirmation.component';
+import { CommentShowComponent } from './comment-show/comment-show.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CommentConfirmationComponent } from './comment-confirmation/comment-con
     HeaderComponent,
     InputTextareaComponent,
     ButtonComponent,
-    CommentConfirmationComponent
+    CommentConfirmationComponent,
+    CommentShowComponent
   ],
   imports: [
     BrowserModule,

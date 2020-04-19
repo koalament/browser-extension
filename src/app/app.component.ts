@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   socket: any;
   key = "https://koalament.io/";
   event = btoa(this.key + "_" + LAYER_VERSION);
+  postList: any[] = [];
   newComment: NewComment = new NewComment('');
   // state: appStateType = 'name';
   state: appStateType = 'standby';
@@ -23,10 +24,10 @@ export class AppComponent implements OnInit, OnDestroy {
   // newComment: NewComment | null = new NewComment('milad');
 
   ngOnInit() {
-    this.socket =  io.connect(SOCKET_ENDPOINT, { reconnection: false });
+    this.socket = io.connect(SOCKET_ENDPOINT, { reconnection: false });
     this.socket.on(this.event, (comment) => {
       // that.onComment(comment, that);
-      console.log(comment);
+      let a = comment.results
     });
     this.socket.emit("read", {
       key: this.key,
@@ -37,8 +38,14 @@ export class AppComponent implements OnInit, OnDestroy {
         console.error(err);
         return;
       }
-      console.log(comments);
-    })
+      this.postList = comments.results.map(x => {
+        return {
+          comment: x.text
+        }
+      });
+      console.log(this.postList);
+      
+    });
   }
 
   ngOnDestroy() {

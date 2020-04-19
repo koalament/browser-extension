@@ -1,16 +1,12 @@
 <!-- <router-outlet></router-outlet> -->
 <app-header></app-header>
-<app-no-comment></app-no-comment>
+<!-- <app-no-comment></app-no-comment> -->
+<app-comment-show [postList]="postList"></app-comment-show>
 <app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)"
     submitValue="Next" value="{{newComment.name}}"></app-input-text>
-<app-input-textarea 
-    *ngIf="state == 'comment' || state =='standby'" 
-    [standby]="state =='standby'" 
-    placeholder="Write your comment..." 
-    [label]="newComment.name"
-    (onSubmit)="onCommentSubmit($event)" 
-    value="{{newComment.content}}" 
-    (onChangeLabel)="changeState('name')">
+<app-input-textarea *ngIf="state == 'comment' || state =='standby'" [standby]="state =='standby'"
+    placeholder="Write your comment..." [label]="newComment.name" (onSubmit)="onCommentSubmit($event)"
+    value="{{newComment.content}}" (onChangeLabel)="changeState('name')">
 </app-input-textarea>
 <app-comment-confirmation *ngIf="state == 'pay'" name="{{newComment.name}}" content="{{newComment.content}}"
     (onClose)="changeState('comment')" (onSuccess)="onSuccessPayment($event)"></app-comment-confirmation>
