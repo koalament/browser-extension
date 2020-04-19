@@ -18,6 +18,7 @@ export class CommentConfirmationComponent implements OnInit {
   @Input() name: string;
   @Input() content: string;
   @Output() onClose: EventEmitter<void> = new EventEmitter();
+  @Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -44,10 +45,10 @@ export class CommentConfirmationComponent implements OnInit {
             currency: 'USD'
           }
         ],
-        onPayment: function (arg) {
-          console.log(arg);
+        onPayment: (arg) => {
+          this.onSuccess.emit(arg);
         },
-        onError: function (arg) {
+        onError: (arg) => {
           // alert("Something went wrong!"); console.log('onError', arg) 
         }
       })

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NewComment } from './new-comment/newComment';
+import { appStateType } from './appStateTypes';
+
+
 
 @Component({
   selector: 'app-root',
@@ -9,8 +12,8 @@ import { NewComment } from './new-comment/newComment';
 export class AppComponent {
   title: string = 'koalament';
   newComment: NewComment = new NewComment('');
-  state: 'name' | 'comment' | 'pay' = 'name';
-  // state: 'name' | 'comment' | 'pay' = 'pay';
+  state: appStateType = 'name';
+  // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
 
   onNameSubmit(name: string) {
@@ -26,7 +29,11 @@ export class AppComponent {
     this.changeState('pay');
   }
 
-  changeState(state: 'name' | 'comment' | 'pay') {
+  changeState(state: appStateType) {
     this.state = state;
+  }
+
+  onSuccessPayment(event: any) {
+    this.changeState('standby');
   }
 }

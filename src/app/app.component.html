@@ -7,4 +7,4 @@
     (onSubmit)="onCommentSubmit($event)" value="{{newComment.content}}" (onChangeLabel)="changeState('name')">
 </app-input-textarea>
 <app-comment-confirmation *ngIf="state == 'pay'" name="{{newComment.name}}" content="{{newComment.content}}"
-    (onClose)="changeState('comment')"></app-comment-confirmation>
+    (onClose)="changeState('comment')" (onSuccess)="onSuccessPayment($event)"></app-comment-confirmation>

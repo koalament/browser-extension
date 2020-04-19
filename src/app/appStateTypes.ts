@@ -1,0 +1,1 @@
+export type appStateType = 'name' | 'comment' | 'pay' | 'standby';
