@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 
 import * as moneyButton from "./money-button.js";
 import * as theGzip from "./gzip.js";
@@ -17,6 +17,7 @@ export class CommentConfirmationComponent implements OnInit {
   @ViewChild('moneyBtnHere') moneyBtnHere;
   @Input() name: string;
   @Input() content: string;
+  @Output() onClose: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
@@ -70,5 +71,9 @@ export class CommentConfirmationComponent implements OnInit {
     }
     return hex
 
+  }
+
+  close() {
+    this.onClose.emit();
   }
 }

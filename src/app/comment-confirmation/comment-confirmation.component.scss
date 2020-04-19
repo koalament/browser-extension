@@ -24,11 +24,28 @@ div.header {
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0 20px;
+    font-size: 24px;
 
     .mini-logo {
         height: 32px;
         width: auto;
         vertical-align: middle;
+    }
+
+    sub {
+        font-size: 14px;
+        line-height: 16px;
+        color: #e9b200;
+    }
+
+    .close {
+        display: inline;
+        float: right;
+        font-size: 18px;
+        line-height: 21px;
+        color: #9e9e9e;
+        padding: 16px;
+        cursor: pointer;
     }
 }
 .body {
@@ -52,7 +69,7 @@ div.header {
         }
     }
 
-    .moneyBtnHere{
+    .moneyBtnHere {
         width: 154px;
         display: block;
         margin: 16px auto;

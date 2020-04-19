@@ -6,4 +6,5 @@
 <app-input-textarea *ngIf="state == 'comment'" placeholder="Write your comment..." [label]="newComment.name"
     (onSubmit)="onCommentSubmit($event)">
 </app-input-textarea>
-<app-comment-confirmation *ngIf="state == 'pay'" name="{{newComment.name}}" content="{{newComment.content}}"></app-comment-confirmation>
+<app-comment-confirmation *ngIf="state == 'pay'" name="{{newComment.name}}" content="{{newComment.content}}"
+    (onClose)="changeState('comment')"></app-comment-confirmation>

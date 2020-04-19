@@ -10,6 +10,7 @@ export class AppComponent {
   title: string = 'koalament';
   newComment: NewComment | null = null;
   state: 'name' | 'comment' | 'pay' = 'name';
+  // state: 'name' | 'comment' | 'pay' = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
 
   onNameSubmit(name: string) {
@@ -22,5 +23,9 @@ export class AppComponent {
     this.newComment.setComment(comment);
     // console.log(this.newComment);
     this.state = 'pay';
+  }
+
+  changeState(state: 'name' | 'comment' | 'pay') {
+    this.state = state;
   }
 }
