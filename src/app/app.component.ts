@@ -13,8 +13,8 @@ export class AppComponent implements OnInit, OnDestroy {
   title: string = 'koalament';
   socket: any;
   newComment: NewComment = new NewComment('');
-  // state: appStateType = 'name';
-  state: appStateType = 'standby';
+  state: appStateType = 'name';
+  // state: appStateType = 'standby';
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
 
