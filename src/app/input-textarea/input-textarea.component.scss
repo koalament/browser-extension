@@ -6,6 +6,8 @@ form {
     left: 0;
     background: #fff;
     width: calc(100% - 16px * 2);
+
+
 }
 div.input {
     background: #f1f1f1;
@@ -19,13 +21,9 @@ div.input {
     textarea {
         border: 0;
         background: inherit;
-        // height: 88px;
-        // width: calc(100% - 40px - 16px - 8px * 2);
         padding: 0 8px;
         resize: none;
-        // float: left;
         height: 20px;
-        // display: inline-block;
         transition: all 0.5s ease;
         width: calc(100% - 16px);
 
@@ -34,8 +32,23 @@ div.input {
             outline: 0;
             height: 80px;
         }
-
     }
+
+    &.standby {
+        background: #f2f2f2;
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+        height: 34px;
+        min-height: 34px;
+        
+        textarea {
+            padding: 8px;
+            height: 34px;
+            min-height: 34px;
+        }
+    }
+
+
 
     label {
         padding: 8px;
@@ -57,18 +70,19 @@ div.input {
             outline: 0;
         }
 
-        &:hover{
+        &:hover {
             text-decoration: underline;
         }
+        
     }
 
-    footer{
+    footer {
         display: inline-block;
         width: calc(100% - 110px - 8px * 2 - 8px * 2);
         margin: 8px;
         margin-top: 26px;
 
-        .counter{
+        .counter {
             text-align: right;
             font-size: 10px;
             color: #828282;

@@ -9,7 +9,8 @@ export class InputTextareaComponent implements OnInit {
 
   @Input('placeholder') placeholder: string = "";
   @Input('label') label: string = "name";
-  @Input()value: string = "";
+  @Input() value: string = "";
+  @Input() standby: boolean = false;
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   @Output() onChangeLabel: EventEmitter<void> = new EventEmitter();
   maxLength: number = 740;

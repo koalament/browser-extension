@@ -12,7 +12,8 @@ import { appStateType } from './appStateTypes';
 export class AppComponent {
   title: string = 'koalament';
   newComment: NewComment = new NewComment('');
-  state: appStateType = 'name';
+  // state: appStateType = 'name';
+  state: appStateType = 'standby';
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
 
