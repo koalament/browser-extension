@@ -18,14 +18,12 @@ export class AppComponent {
       name = 'Unknown';
     }
     this.newComment = new NewComment(name);
-    this.newComment.test();
-    this.state = 'comment';
+    this.changeState('comment');
   }
 
   onCommentSubmit(comment: string) {
     this.newComment.setComment(comment);
-    // console.log(this.newComment);
-    this.state = 'pay';
+    this.changeState('pay');
   }
 
   changeState(state: 'name' | 'comment' | 'pay') {

@@ -9,8 +9,9 @@ export class InputTextareaComponent implements OnInit {
 
   @Input('placeholder') placeholder: string = "";
   @Input('label') label: string = "name";
-  @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   @Input()value: string = "";
+  @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onChangeLabel: EventEmitter<void> = new EventEmitter();
   maxLength: number = 740;
 
   constructor() { }
@@ -28,6 +29,12 @@ export class InputTextareaComponent implements OnInit {
     if (this.value.length > this.maxLength) {
       e.preventDefault();
     }
+  }
+
+  changeLabel() {
+    console.log(1);
+    
+    this.onChangeLabel.emit();
   }
 
 }

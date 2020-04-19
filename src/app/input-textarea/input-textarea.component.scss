@@ -20,13 +20,14 @@ div.input {
         border: 0;
         background: inherit;
         // height: 88px;
-        width: calc(100% - 40px - 16px - 8px * 2);
-        padding: 8px;
+        // width: calc(100% - 40px - 16px - 8px * 2);
+        padding: 0 8px;
         resize: none;
-        float: left;
+        // float: left;
         height: 20px;
         // display: inline-block;
         transition: all 0.5s ease;
+        width: calc(100% - 16px);
 
         &:focus {
             bottom: 0;
@@ -37,11 +38,14 @@ div.input {
     }
 
     label {
-        float: left;
+        padding: 8px;
+        padding-bottom: 0;
+        display: block;
+        // float: left;
         // display: inline-block;
         font-weight: bold;
         font-size: 14px;
-        width: calc(40px);
+        // width: calc(40px);
         // height: 100%;
         border: 0;
         background: inherit;
@@ -51,6 +55,10 @@ div.input {
         &:focus {
             bottom: 0;
             outline: 0;
+        }
+
+        &:hover{
+            text-decoration: underline;
         }
     }
 
