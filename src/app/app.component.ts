@@ -1,21 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NewComment } from './new-comment/newComment';
 import { appStateType } from './appStateTypes';
+import * as io from 'socket.io-client';
 
-
+const SOCKET_ENDPOINT: string = 'https://dev-nap.koalament.io';
+const LAYER_VERSION: number = 1;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title: string = 'koalament';
+  socket: any;
+  key = "https://koalament.io/";
+  event = btoa(this.key + "_" + LAYER_VERSION);
   newComment: NewComment = new NewComment('');
   // state: appStateType = 'name';
   state: appStateType = 'standby';
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
+
+  ngOnInit() {
+    this.socket =  io.connect(SOCKET_ENDPOINT, { reconnection: false });
+    this.socket.on(this.event, (comment) => {
+      // that.onComment(comment, that);
+      console.log(comment);
+    });
+    this.socket.emit("read", {
+      key: this.key,
+      from: 0,
+      limit: 100
+    }, (err, comments) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(comments);
+    })
+  }
+
+  ngOnDestroy() {
+    this.socket.removeListener(this.event)
+  }
 
   onNameSubmit(name: string) {
     if (name == "") {
