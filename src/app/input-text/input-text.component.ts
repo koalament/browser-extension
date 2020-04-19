@@ -6,17 +6,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input-text.component.scss']
 })
 export class InputTextComponent implements OnInit {
-  @Input('placeholder')placeholder : string = "";
-  @Input('submitValue')submitValue: string = "submit";
+  @Input('placeholder') placeholder: string = "";
+  @Input('submitValue') submitValue: string = "submit";
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
-  value: string = "";
+  @Input() value: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  submitEvent(e:Event){
+  submitEvent(e: Event) {
     this.onSubmit.emit(this.value);
     e.preventDefault();
   }

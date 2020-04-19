@@ -8,7 +8,7 @@ import { NewComment } from './new-comment/newComment';
 })
 export class AppComponent {
   title: string = 'koalament';
-  newComment: NewComment | null = null;
+  newComment: NewComment = new NewComment('');
   state: 'name' | 'comment' | 'pay' = 'name';
   // state: 'name' | 'comment' | 'pay' = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
