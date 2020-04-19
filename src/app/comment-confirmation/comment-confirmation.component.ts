@@ -22,7 +22,7 @@ export class CommentConfirmationComponent implements OnInit {
 
   ngAfterViewInit(): void {
     // let key = doc.location;
-    let key = "https://koalament.io";
+    let key = "https://koalament.io/";
     let data = { nickname: this.name, key: key, text: this.content };
     let isReply = false;
 
@@ -38,7 +38,7 @@ export class CommentConfirmationComponent implements OnInit {
             currency: 'USD'
           },
           {
-            script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 2 gzip ' + compressed.toString("base64")),
+            script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 1 gzip ' + compressed.toString("base64")),
             amount: '0',
             currency: 'USD'
           }
