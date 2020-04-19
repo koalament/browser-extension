@@ -14,6 +14,9 @@ export class AppComponent {
   // newComment: NewComment | null = new NewComment('milad');
 
   onNameSubmit(name: string) {
+    if (name == "") {
+      name = 'Unknown';
+    }
     this.newComment = new NewComment(name);
     this.newComment.test();
     this.state = 'comment';
