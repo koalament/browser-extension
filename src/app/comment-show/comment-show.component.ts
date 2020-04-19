@@ -16,7 +16,6 @@ export class CommentShowComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    console.log(this.postList);
   }
 
 }

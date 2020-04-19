@@ -2,12 +2,15 @@
     height: calc(100% - 57px);
     overflow-y: scroll;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+
     article {
         background: #f9f9f9;
         border-radius: 25px 25px 25px 0px;
         margin: 8px 16px;
         width: calc(100% - 16px * 2);
-    
+
         .comment {
             color: rgba(0, 0, 0, 0.6);
             padding: 18px;

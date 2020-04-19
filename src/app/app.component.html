@@ -1,7 +1,7 @@
 <!-- <router-outlet></router-outlet> -->
 <app-header></app-header>
 <!-- <app-no-comment></app-no-comment> -->
-<app-comment-show [postList]="postList"></app-comment-show>
+<app-comment-show [postList]="(resolver.$postList | async)"></app-comment-show>
 <app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)"
     submitValue="Next" value="{{newComment.name}}"></app-input-text>
 <app-input-textarea *ngIf="state == 'comment' || state =='standby'" [standby]="state =='standby'"
