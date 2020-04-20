@@ -29,6 +29,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.changeState('standby');
       })
     }
+    if (chrome.tabs.available()) {
+      chrome.tabs.selected.url().then(url => console.log(url));
+    }
   }
 
   ngOnDestroy() {
