@@ -26,7 +26,7 @@ export class AppResolverSocketService {
                 this.socket.on(this.event, (comment) => {
                     this.postList.unshift({
                         comment: comment.text,
-                        name: comment.nickname
+                        name: comment.nickname || 'Unknown'
                     });
                     this.$postList.next(this.postList);
                 });
@@ -70,7 +70,7 @@ export class AppResolverSocketService {
                 this.postList = comments.results.reverse().map(x => {
                     return {
                         comment: x.text,
-                        name: x.nickname
+                        name: x.nickname || 'Unknown'
                     }
                 });
                 this.$postList.next(this.postList);
