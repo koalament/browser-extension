@@ -1,4 +1,5 @@
-let available = () => chrome != undefined;
+let available = () => chrome.storage != undefined;
+
 let set = (object) => {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.set(object, () => {

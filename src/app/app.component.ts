@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { NewComment } from './new-comment/newComment';
 import { appStateType } from './appStateTypes';
 import { AppResolverSocketService } from './app.resolver.socket.service';
-
+import * as chromeStore from './chromeStorage.js';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,13 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(public resolver: AppResolverSocketService) { }
 
   ngOnInit() {
-
+    if (chromeStore.available()) {
+      chromeStore.get('name').then(result => {
+        console.log(result);
+        this.newComment = new NewComment(result.name);
+        this.changeState('standby');
+      })
+    }
   }
 
   ngOnDestroy() {
@@ -32,6 +39,11 @@ export class AppComponent implements OnInit, OnDestroy {
       name = 'Unknown';
     }
     this.newComment = new NewComment(name);
+    if (chromeStore.available()) {
+      chromeStore.set({ name: name }).then(_ => {
+        console.log('name stored on cloud!');
+      });
+    }
     this.changeState('comment');
   }
 
