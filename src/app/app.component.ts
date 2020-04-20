@@ -30,7 +30,9 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     }
     if (chrome.tabs.available()) {
-      chrome.tabs.selected.url().then(url => console.log(url));
+      chrome.tabs.selected.url().then(url => {
+        this.newComment.setUrl(url);
+      });
     }
   }
 

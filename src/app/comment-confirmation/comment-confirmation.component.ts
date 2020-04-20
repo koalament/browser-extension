@@ -17,6 +17,7 @@ export class CommentConfirmationComponent implements OnInit {
   @ViewChild('moneyBtnHere') moneyBtnHere;
   @Input() name: string;
   @Input() content: string;
+  @Input() key: string;
   @Output() onClose: EventEmitter<void> = new EventEmitter();
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
@@ -24,8 +25,10 @@ export class CommentConfirmationComponent implements OnInit {
 
   ngAfterViewInit(): void {
     // let key = doc.location;
-    let key = "https://koalament.io/";
-    let data = { nickname: this.name, key: key, text: this.content };
+    // let key = "https://koalament.io/";
+    console.log(this.key);
+    
+    let data = { nickname: this.name, key: this.key, text: this.content };
     let isReply = false;
 
     theGzip.gzip(Buffer.from((!isReply ? '0' : '1') + ' ' + JSON.stringify(data), "utf-8")).then(compressed => {
