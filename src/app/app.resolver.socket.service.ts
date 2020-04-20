@@ -21,6 +21,7 @@ export class AppResolverSocketService {
             chrome.tabs.selected.url().then(url => {
                 // this.newComment.setUrl(url);
                 this.key = url;
+                this.event = btoa(this.key + "_" + environment.LAYER_VERSION);
                 this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
                 this.socket.on(this.event, (comment) => {
                     this.postList.unshift({

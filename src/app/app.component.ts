@@ -24,15 +24,10 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (chrome.store.available()) {
       chrome.store.get('name').then(result => {
-        console.log(result);
+        // console.log(result);
         this.newComment = new NewComment(result.name);
         this.changeState('standby');
       })
-    }
-    if (chrome.tabs.available()) {
-      chrome.tabs.selected.url().then(url => {
-        this.newComment.setUrl(url);
-      });
     }
   }
 
