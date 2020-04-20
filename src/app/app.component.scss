@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+
+    header {
+        flex: 0 0 58px;
+    }
+
+    .comments {
+        flex: 1 1 auto;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        flex-direction: column-reverse;
+        display: flex;
+        transition: all 0.5s ease 0;
+    }
+    .input {
+        flex: 0 0 50px;
+        transition: all 0.5s ease 0;
+    }
+}

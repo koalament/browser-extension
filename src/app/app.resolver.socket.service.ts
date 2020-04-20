@@ -24,7 +24,7 @@ export class AppResolverSocketService {
                 this.event = btoa(this.key + "_" + environment.LAYER_VERSION);
                 this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
                 this.socket.on(this.event, (comment) => {
-                    this.postList.unshift(this.mapComment(comment));
+                    this.postList.push(this.mapComment(comment));
                     console.log(comment);
                     this.$postList.next(this.postList);
                 });
@@ -66,7 +66,7 @@ export class AppResolverSocketService {
                     return;
                 }
                 console.log(comments);
-                this.postList = comments.results.reverse().map(this.mapComment);
+                this.postList = comments.results.map(this.mapComment);
                 this.$postList.next(this.postList);
                 console.log(this.postList);
             });

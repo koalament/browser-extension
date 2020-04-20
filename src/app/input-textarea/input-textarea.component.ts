@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-input-textarea',
@@ -10,7 +11,7 @@ export class InputTextareaComponent implements OnInit {
   @Input('placeholder') placeholder: string = "";
   @Input('label') label: string = "name";
   @Input() value: string = "";
-  @Input() standby: boolean = false;
+  @Input() standby: BehaviorSubject<boolean>;
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   @Output() onChangeLabel: EventEmitter<void> = new EventEmitter();
   maxLength: number = 740;
@@ -18,6 +19,13 @@ export class InputTextareaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log(this.standby);
+    
   }
 
   submitEvent(e: Event) {
@@ -36,5 +44,9 @@ export class InputTextareaComponent implements OnInit {
 
   changeLabel() {
     this.onChangeLabel.emit();
+  }
+
+  turnOn(){
+    this.standby.next(false);
   }
 }

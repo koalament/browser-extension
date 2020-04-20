@@ -4,6 +4,7 @@ import { NewComment } from './new-comment/newComment';
 import { appStateType } from './appStateTypes';
 import { AppResolverSocketService } from './app.resolver.socket.service';
 import * as chrome from './chrome.js';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   socket: any;
   newComment: NewComment = new NewComment('');
   state: appStateType = 'name';
+  $standby: BehaviorSubject<boolean> = new BehaviorSubject(false)
   // state: appStateType = 'standby';
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
@@ -54,10 +56,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   changeState(state: appStateType) {
     this.state = state;
+    this.$standby.next(this.state === 'standby');
   }
 
   onSuccessPayment(event: any) {
     this.newComment = new NewComment(this.newComment.name);
     this.changeState('standby');
+  }
+
+  foo() {
+    console.log('click');
+    this.changeState('standby');
+    
   }
 }
