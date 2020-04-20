@@ -6,17 +6,19 @@ form {
     left: 0;
     background: #fff;
     width: calc(100% - 16px * 2);
-
-
 }
 div.input {
     background: #f1f1f1;
-    border: 1px solid #e9b200;
+    border: 1px solid white;
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
     min-height: 88px;
     width: 100%;
+
+    &:focus-within {
+        border: 1px solid #e9b200;
+    }
 
     textarea {
         border: 0;
@@ -40,15 +42,13 @@ div.input {
         border-radius: 10px;
         height: 34px;
         min-height: 34px;
-        
+
         textarea {
             padding: 8px;
             height: 34px;
             min-height: 34px;
         }
     }
-
-
 
     label {
         padding: 8px;
@@ -64,6 +64,7 @@ div.input {
         background: inherit;
         padding: 8px;
         cursor: pointer;
+        color: #323232;
 
         &:focus {
             bottom: 0;
@@ -73,7 +74,6 @@ div.input {
         &:hover {
             text-decoration: underline;
         }
-        
     }
 
     footer {
