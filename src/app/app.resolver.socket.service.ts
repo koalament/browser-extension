@@ -24,10 +24,8 @@ export class AppResolverSocketService {
                 this.event = btoa(this.key + "_" + environment.LAYER_VERSION);
                 this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
                 this.socket.on(this.event, (comment) => {
-                    this.postList.unshift({
-                        comment: comment.text,
-                        name: comment.nickname || 'Unknown'
-                    });
+                    this.postList.unshift(this.mapComment(comment));
+                    console.log(comment);
                     this.$postList.next(this.postList);
                 });
                 this.socket.emit("read", {
@@ -67,15 +65,19 @@ export class AppResolverSocketService {
                     console.error(err);
                     return;
                 }
-                this.postList = comments.results.reverse().map(x => {
-                    return {
-                        comment: x.text,
-                        name: x.nickname || 'Unknown'
-                    }
-                });
+                console.log(comments);
+                this.postList = comments.results.reverse().map(this.mapComment);
                 this.$postList.next(this.postList);
-                // console.log(comments);
+                console.log(this.postList);
             });
+        }
+    }
+
+    private mapComment(comment: any) {
+        return {
+            comment: comment.text,
+            name: comment.nickname || 'Unknown',
+            txid: comment._txid
         }
     }
 }
