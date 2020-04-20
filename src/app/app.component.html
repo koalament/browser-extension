@@ -1,6 +1,6 @@
 <!-- <router-outlet></router-outlet> -->
 <app-header></app-header>
-<!-- <app-no-comment></app-no-comment> -->
+<app-no-comment *ngIf="(resolver.$postList | async).length == 0"></app-no-comment>
 <app-comment-show [postList]="(resolver.$postList | async)"></app-comment-show>
 <app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..." (onSubmit)="onNameSubmit($event)"
     submitValue="Next" value="{{newComment.name}}"></app-input-text>
