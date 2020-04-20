@@ -10,4 +10,10 @@ input {
     cursor: pointer;
     color: #222222;
     font-weight: bold;
+    transition: all 0.5s ease 0s;
+
+    &.disable {
+        background: #E5E5E5;
+        color: rgba(34, 34, 34, 0.38);
+    }
 }
