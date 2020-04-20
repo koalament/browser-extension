@@ -1,6 +1,6 @@
-let available = () => chrome.storage != undefined;
+let store_available = () => chrome.storage != undefined;
 
-let set = (object) => {
+let store_set = (object) => {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.set(object, () => {
             resolve(true);
@@ -8,7 +8,7 @@ let set = (object) => {
     });
 };
 
-let get = (key) => {
+let store_get = (key) => {
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get([key], (result) => {
             resolve(result);
@@ -16,8 +16,11 @@ let get = (key) => {
     });
 };
 
+
 module.exports = {
-    available: available,
-    set: set,
-    get: get
+    store: {
+        available: store_available,
+        set: store_set,
+        get: store_get
+    }
 }
