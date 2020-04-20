@@ -21,7 +21,9 @@ export class InputTextareaComponent implements OnInit {
   }
 
   submitEvent(e: Event) {
-    this.onSubmit.emit(this.value);
+    if (this.value.length > 0) {
+      this.onSubmit.emit(this.value);
+    }
     e.preventDefault();
   }
 
@@ -33,9 +35,6 @@ export class InputTextareaComponent implements OnInit {
   }
 
   changeLabel() {
-    console.log(1);
-    
     this.onChangeLabel.emit();
   }
-
 }

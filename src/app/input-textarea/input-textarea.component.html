@@ -1,11 +1,13 @@
-<form action="" method="POST"  (click)="standby = false">
+<form action="" method="POST" (click)="standby = false">
     <div class="input" [ngClass]="{'standby': standby}">
         <label *ngIf="!standby" dir="auto" (click)="changeLabel()">{{label}}</label>
-        <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value" (keydown)="countLength($event)" dir="auto"></textarea>
-        <footer  *ngIf="!standby">
+        <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value"
+            (keydown)="countLength($event)" dir="auto"></textarea>
+        <footer *ngIf="!standby">
             <div class="counter">{{value.length}} / {{maxLength}}</div>
         </footer>
-        <app-input-textarea-button *ngIf="!standby" label="POST" stringLength="{{value.length}}" (click)="submitEvent($event)"></app-input-textarea-button>
+        <app-input-textarea-button *ngIf="!standby" label="POST" stringLength="{{value.length}}"
+            (click)="submitEvent($event)"></app-input-textarea-button>
     </div>
     <div style="clear:both"></div>
 </form>
