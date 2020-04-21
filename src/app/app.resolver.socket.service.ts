@@ -56,11 +56,7 @@ export class AppResolverSocketService {
                 console.error(err);
                 return;
             }
-            let a = [...comments.results];
-            // a = a.reverse();
-            console.log(comments, a);
-            this.postList = a.map(this.mapComment);
-            console.log(this.postList);
+            this.postList = comments.results.map(this.mapComment);
             this.$postList.next(this.postList);
         });
     }
