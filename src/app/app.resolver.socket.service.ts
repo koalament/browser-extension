@@ -41,7 +41,7 @@ export class AppResolverSocketService {
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
         this.socket.on(this.event, (comment) => {
-            this.postList.unshift({
+            this.postList.push({
                 comment: comment.text,
                 name: comment.nickname
             });
