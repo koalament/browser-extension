@@ -25,4 +25,23 @@
 header {
     padding: 18px;
     padding-bottom: 0;
+
+    .name {
+        color: rgba(0, 0, 0, 0.87);
+        display: inline;
+    }
+    time {
+        display: inline;
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        color: rgba(0, 0, 0, 0.4);
+        margin-left: 5px;
+    }
+    .txid {
+        float: right;        
+        img {
+            vertical-align: middle;
+        }
+    }
 }

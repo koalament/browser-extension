@@ -2,6 +2,10 @@
     <article *ngFor="let post of postList">
         <header>
             <section class="name">{{post.name}}</section>
+            <time>• {{post.created_at_fromNow}}</time>
+            <a href="https://whatsonchain.com/tx/{{post.txid}}" class="txid" target="_blank">
+                <img src="/assets/chain.svg" alt="chain">
+            </a>
         </header>
         <section class="comment">{{post.comment}}</section>
     </article>
