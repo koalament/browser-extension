@@ -3,6 +3,7 @@ import { connect } from 'socket.io-client';
 import { environment } from "../environments/environment";
 import { BehaviorSubject } from 'rxjs';
 import * as chrome from './chrome.js';
+import * as moment from 'moment';
 
 
 
@@ -30,14 +31,6 @@ export class AppResolverSocketService {
         }
     }
 
-    private mapComment(comment: any) {
-        return {
-            comment: comment.text,
-            name: comment.nickname || 'Unknown',
-            txid: comment._txid
-        }
-    }
-
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
         this.socket.on(this.event, (comment) => {
@@ -57,7 +50,19 @@ export class AppResolverSocketService {
                 return;
             }
             this.postList = comments.results.map(this.mapComment);
+            console.log(this.postList);
+            
             this.$postList.next(this.postList);
         });
+    }
+
+    private mapComment(comment: any) {
+        return {
+            comment: comment.text,
+            name: comment.nickname || 'Unknown',
+            txid: comment._txid,
+            created_at: comment.created_at,
+            created_at_fromNow: moment(comment.created_at).fromNow()
+        }
     }
 }
