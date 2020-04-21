@@ -21,13 +21,6 @@ export class InputTextareaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnChanges(): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(this.standby);
-    
-  }
-
   submitEvent(e: Event) {
     if (this.value.length > 0) {
       this.onSubmit.emit(this.value);
