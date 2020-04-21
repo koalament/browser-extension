@@ -64,9 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.changeState('standby');
   }
 
-  foo() {
-    console.log('click');
+  standby() {
     this.changeState('standby');
-    
   }
 }

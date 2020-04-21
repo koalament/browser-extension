@@ -3,7 +3,7 @@
     <header>
         <app-header></app-header>
     </header>
-    <section class="comments" (click)="foo()">
+    <section class="comments" (click)="standby()">
         <app-no-comment *ngIf="(resolver.$postList | async).length == 0"></app-no-comment>
         <app-comment-show *ngIf="(resolver.$postList | async).length > 0" [postList]="(resolver.$postList | async)">
         </app-comment-show>
