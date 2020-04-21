@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title: string = 'koalament';
   socket: any;
   newComment: NewComment = new NewComment('');
@@ -33,11 +33,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-  }
-
   onNameSubmit(name: string) {
-    if (name == "") {
+    if (name == "" || name == undefined || name == null) {
       name = 'Unknown';
     }
     this.newComment = new NewComment(name);
