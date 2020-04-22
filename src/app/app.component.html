@@ -10,7 +10,7 @@
     </section>
     <section class="input">
         <app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..."
-            (onSubmit)="onNameSubmit($event)" submitValue="Next" value="{{newComment.name}}"></app-input-text>
+            (onSubmit)="onNameSubmit($event)" submitValue="NEXT" value="{{newComment.name}}"></app-input-text>
         <app-input-textarea *ngIf="state == 'comment' || state =='standby'" [standby]="$standby"
             placeholder="Write your comment..." [label]="newComment.name" (onSubmit)="onCommentSubmit($event)"
             value="{{newComment.content}}" (onChangeLabel)="changeState('name')">
