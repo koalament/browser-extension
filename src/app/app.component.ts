@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 import { NewComment } from './new-comment/newComment';
 import { appStateType } from './appStateTypes';
 import { AppResolverSocketService } from './app.resolver.socket.service';
 import * as chrome from './chrome.js';
 import { BehaviorSubject } from 'rxjs';
+import { firefox } from './browser';
 
 @Component({
   selector: 'app-root',
@@ -21,16 +22,30 @@ export class AppComponent implements OnInit {
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
 
+  @ViewChild('comments') commentsElement: ElementRef;
+
   constructor(public resolver: AppResolverSocketService) { }
 
   ngOnInit() {
-    if (chrome.store.available()) {
-      chrome.store.get('name').then(result => {
-        // console.log(result);
-        this.newComment = new NewComment(result.name);
-        this.changeState('standby');
-      })
-    }
+    // if (chrome.store.available()) {
+    //   chrome.store.get('name').then(result => {
+    //     // console.log(result);
+    //     this.newComment = new NewComment(result.name);
+    //     this.changeState('standby');
+    //   })
+    // }
+
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  changeOnComments(){
+    firefox(() => {
+      this.commentsElement.nativeElement.style.flexDirection = "unset";
+      this.commentsElement.nativeElement.scrollTop = this.commentsElement.nativeElement.scrollHeight;
+    });
   }
 
   onNameSubmit(name: string) {
