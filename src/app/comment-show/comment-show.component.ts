@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CommentShowComponent implements OnInit {
 
   @Input('postList') postList: any[] = [];
+  postListCount: number = 0;
   @Output('change') change: EventEmitter<void> = new EventEmitter();
 
   constructor() {
@@ -17,7 +18,10 @@ export class CommentShowComponent implements OnInit {
   }
 
   ngAfterViewChecked(): void {
-    this.change.emit();
+    if(this.postList.length != this.postListCount) {
+      this.postListCount = this.postList.length
+      this.change.emit();
+    }
   }
 
   ngOnChanges(): void {
