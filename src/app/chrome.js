@@ -31,8 +31,10 @@ module.exports = {
     browserAction: {
         setBadgeText: (text) => {
             return new Promise(resolve => {
-                chrome.browserAction.setBadgeText({text: text}, () => {
-                    resolve();
+                chrome.tabs.getSelected(null ,tab => {
+                    chrome.browserAction.setBadgeText({text: text, tabId: tab.id}, () => {
+                        resolve();
+                    });
                 });
             });
         }
