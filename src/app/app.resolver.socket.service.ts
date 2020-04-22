@@ -50,8 +50,8 @@ export class AppResolverSocketService {
                 return;
             }
             this.postList = comments.results.map(this.mapComment);
-            console.log(this.postList);
-            
+            // console.log(this.postList);
+            // chrome.browserAction.setBadgeText("" + this.postList.length);
             this.$postList.next(this.postList);
         });
     }

@@ -27,5 +27,12 @@ module.exports = {
                 });
             }
         }
+    },
+    browserAction: {
+        setBadgeText: (text) => {
+            return new Promise(resolve => {
+                resolve(chrome.browserAction.setBadgeText({text: text}));
+            });
+        }
     }
 }
