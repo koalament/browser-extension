@@ -2,10 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import * as browser from "detect-browser";
+
 export const environment = {
   production: false,
   SOCKET_ENDPOINT: 'https://dev-nap.koalament.io',
-  LAYER_VERSION: 1
+  LAYER_VERSION: 1,
+  browser: browser.detect()
 };
 
 /*
