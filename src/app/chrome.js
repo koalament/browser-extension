@@ -19,7 +19,7 @@ module.exports = {
     tabs: {
         available: () => chrome.tabs != undefined,
         selected: {
-            url:  (tab) => {
+            url:  () => {
                 return new Promise(resolve => {
                     chrome.tabs.getSelected(null ,tab => {
                         resolve(tab.url)
