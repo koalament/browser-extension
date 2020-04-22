@@ -5,3 +5,10 @@ export function firefox(callback) {
         callback();
     }
 }
+
+
+export function chrome(callback) {
+    if (environment.browser.name === "chrome") {
+        callback();
+    }
+}
