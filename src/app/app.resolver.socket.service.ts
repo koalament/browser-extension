@@ -3,8 +3,9 @@ import { connect } from 'socket.io-client';
 import { environment } from "../environments/environment";
 import { BehaviorSubject } from 'rxjs';
 import * as chrome from './chrome.js';
+import * as firefoxBrowser from './firefox.js';
 import * as moment from 'moment';
-
+import { firefox } from './browser';
 
 
 @Injectable()
@@ -17,17 +18,25 @@ export class AppResolverSocketService {
 
     constructor() {
 
-        // update url
-        if (chrome.tabs.available()) {
-            chrome.tabs.selected.url().then(url => {
-                // this.newComment.setUrl(url);
+        if (!firefox(_ => {
+            firefoxBrowser.tabs.selected.url().then(url => {
                 this.key = url;
                 this.event = btoa(this.key + "_" + environment.LAYER_VERSION);
                 this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
                 this.resolveFromSocket();
             });
-        } else {
-            this.resolveFromSocket();
+        })) {
+            if (chrome.tabs.available()) {
+                chrome.tabs.selected.url().then(url => {
+                    // this.newComment.setUrl(url);
+                    this.key = url;
+                    this.event = btoa(this.key + "_" + environment.LAYER_VERSION);
+                    this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
+                    this.resolveFromSocket();
+                });
+            } else {
+                this.resolveFromSocket();
+            }
         }
     }
 
