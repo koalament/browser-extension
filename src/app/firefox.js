@@ -21,11 +21,9 @@ module.exports = {
         selected: {
             url: () => {
                 return new Promise(resolve => {
-                    browser.tabs.getCurrent().then((tabs, error) => {
-                        console.log(tabs);
-                        
-                        resolve(tabs.url)
-                    });
+                    browser.runtime.getBackgroundPage().then(w => {
+                        w.firefoxGetUrl().then(url => resolve(url));
+                    })
                 });
             }
         },
