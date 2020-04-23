@@ -4,6 +4,8 @@ import * as moneyButton from "./money-button.js";
 import * as theGzip from "./gzip.js";
 import { Buffer } from 'buffer';
 import * as chrome from '../chrome.js';
+import * as firefoxBrowser from '../firefox.js';
+import { firefox } from '../browser.js';
 
 
 const doc = window.document;
@@ -30,39 +32,23 @@ export class CommentConfirmationComponent implements OnInit {
     // let key = "https://koalament.io/";
 
     let isReply = false;
-    
-    if (chrome.tabs.available()) {
-      chrome.tabs.selected.url().then(url => {
+
+    if (!firefox(_ => {
+      firefoxBrowser.tabs.selected.url().then(url => {
+        console.log(url);
+        
         this.key = url;
-        console.log(this.key);
-        let data = { nickname: this.name, key: this.key, text: this.content };
-        theGzip.gzip(Buffer.from((!isReply ? '0' : '1') + ' ' + JSON.stringify(data), "utf-8")).then(compressed => {
-          moneyButton.render(this.moneyBtnHere.nativeElement, {
-            label: "Send",
-            clientIdentifier: "36a0fd92080022d9234e610de329e13d",
-            buttonId: "234325",
-            outputs: [
-              {
-                to: '14781',
-                amount: '0.005',
-                currency: 'USD'
-              },
-              {
-                script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 1 gzip ' + compressed.toString("base64")),
-                amount: '0',
-                currency: 'USD'
-              }
-            ],
-            onPayment: (arg) => {
-              this.onSuccess.emit(arg);
-            },
-            onError: (arg) => {
-              // alert("Something went wrong!"); console.log('onError', arg) 
-            }
-          })
-        });
+        this.generateMoneyButton(isReply);
       });
+    })) {
+      if (chrome.tabs.available()) {
+        chrome.tabs.selected.url().then(url => {
+          this.key = url;
+          this.generateMoneyButton(isReply);
+        });
+      }
     }
+
 
   }
 
@@ -83,6 +69,35 @@ export class CommentConfirmationComponent implements OnInit {
     }
     return hex
 
+  }
+
+  generateMoneyButton(isReply) {
+    let data = { nickname: this.name, key: this.key, text: this.content };
+    theGzip.gzip(Buffer.from((!isReply ? '0' : '1') + ' ' + JSON.stringify(data), "utf-8")).then(compressed => {
+      moneyButton.render(this.moneyBtnHere.nativeElement, {
+        label: "Send",
+        clientIdentifier: "36a0fd92080022d9234e610de329e13d",
+        buttonId: "234325",
+        outputs: [
+          {
+            to: '14781',
+            amount: '0.005',
+            currency: 'USD'
+          },
+          {
+            script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 1 gzip ' + compressed.toString("base64")),
+            amount: '0',
+            currency: 'USD'
+          }
+        ],
+        onPayment: (arg) => {
+          this.onSuccess.emit(arg);
+        },
+        onError: (arg) => {
+          // alert("Something went wrong!"); console.log('onError', arg) 
+        }
+      })
+    });
   }
 
   close(e) {
