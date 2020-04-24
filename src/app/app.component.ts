@@ -4,6 +4,7 @@ import { NewComment } from './new-comment/newComment';
 import { appStateType } from './appStateTypes';
 import { AppResolverSocketService } from './app.resolver.socket.service';
 import * as chrome from './chrome.js';
+import * as firefoxBrowser from './firefox.js';
 import { BehaviorSubject } from 'rxjs';
 import { firefox } from './browser';
 
@@ -27,21 +28,30 @@ export class AppComponent implements OnInit {
   constructor(public resolver: AppResolverSocketService) { }
 
   ngOnInit() {
-    // if (chrome.store.available()) {
-    //   chrome.store.get('name').then(result => {
-    //     // console.log(result);
-    //     this.newComment = new NewComment(result.name);
-    //     this.changeState('standby');
-    //   })
-    // }
-
+    if (!firefox(_ => {
+      if (firefoxBrowser.store.available()) {
+        firefoxBrowser.store.get('name').then(result => {
+          // console.log(result);
+          this.newComment = new NewComment(result.name);
+          this.changeState('standby');
+        })
+      }
+    })) {
+      if (chrome.store.available()) {
+        chrome.store.get('name').then(result => {
+          // console.log(result);
+          this.newComment = new NewComment(result.name);
+          this.changeState('standby');
+        })
+      }
+    }
   }
 
   ngAfterViewInit() {
 
   }
 
-  changeOnComments(){
+  changeOnComments() {
     firefox(() => {
       this.commentsElement.nativeElement.style.flexDirection = "unset";
       this.commentsElement.nativeElement.scrollTop = this.commentsElement.nativeElement.scrollHeight;
@@ -53,10 +63,18 @@ export class AppComponent implements OnInit {
       name = 'Unknown';
     }
     this.newComment = new NewComment(name);
-    if (chrome.store.available()) {
-      chrome.store.set({ name: name }).then(_ => {
-        console.log('name stored on cloud!');
-      });
+    if (!firefox(_ => {
+      if (firefoxBrowser.store.available()) {
+        firefoxBrowser.store.set({ name: name }).then(_ => {
+          console.log('name stored on firefox cloud!');
+        });
+      }
+    })) {
+      if (chrome.store.available()) {
+        chrome.store.set({ name: name }).then(_ => {
+          console.log('name stored on cloud!');
+        });
+      }
     }
     this.changeState('comment');
   }
