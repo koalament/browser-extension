@@ -1,16 +1,16 @@
 module.exports = {
     store: {
-        available: () => chrome.storage != undefined,
+        available: () => browser.storage != undefined,
         set: (object) => {
             return new Promise((resolve, reject) => {
-                chrome.storage.sync.set(object, () => {
+                browser.storage.sync.set(object, () => {
                     resolve(true);
                 });
             });
         },
         get: (key) => {
             return new Promise((resolve, reject) => {
-                chrome.storage.sync.get([key], (result) => {
+                browser.storage.sync.get([key], (result) => {
                     resolve(result);
                 });
             });
