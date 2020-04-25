@@ -5,9 +5,9 @@
   "description": "Koala open comment",
   "homepage_url": "https://koalament.io",
   "icons": {
-    "16": "assets/icon/koala-icon03-16.png",
-    "48": "assets/icon/koala-icon03-48.png",
-    "128": "assets/icon/koala-icon03-128.png"
+    "16": "assets/icon/koala-icon04-16.png",
+    "48": "assets/icon/koala-icon04-48.png",
+    "128": "assets/icon/koala-icon04-128.png"
   },
   "background": {
     "scripts": [
@@ -17,7 +17,7 @@
   },
   "browser_action": {
     "default_title": "Koalament",
-    "default_icon": "assets/icon/koala-icon03-128.png",
+    "default_icon": "assets/icon/koala-icon04-128.png",
     "default_popup": "index.html"
   },
   "permissions": [
