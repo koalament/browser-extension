@@ -14,8 +14,8 @@
             (onSubmit)="onNameSubmit($event)" submitValue="NEXT" value="{{newCommentS.comment?.name || ''}}"
             (onClose)="onNameSubmit($event)"></app-input-text>
         <app-input-textarea *ngIf="state == 'comment' || state =='standby'" [standby]="$standby"
-            placeholder="Write your comment..." [label]="newCommentS.comment.name" (onSubmit)="onCommentSubmit($event)"
-            value="{{newCommentS.comment.content}}" (onChangeLabel)="changeState('name')">
+            placeholder="Write your comment..." [label]="newCommentS.comment?.name || ''" (onSubmit)="onCommentSubmit($event)"
+            value="{{newCommentS.comment?.content || ''}}" (onChangeLabel)="changeState('name')">
         </app-input-textarea>
         <app-comment-confirmation *ngIf="state == 'pay'" name="{{newCommentS.comment.name}}"
             content="{{newCommentS.comment.content}}" (onClose)="changeState('comment')"

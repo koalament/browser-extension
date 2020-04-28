@@ -40,6 +40,10 @@ export class InputTextareaComponent implements OnInit {
   }
 
   turnOn(){
-    this.standby.next(false);
+    if(this.label == "") {
+      this.changeLabel()
+    } else {
+      this.standby.next(false);
+    }
   }
 }

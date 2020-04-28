@@ -18,8 +18,8 @@ import { NewCommentService } from './new-comment/newComment.service';
 export class AppComponent implements OnInit {
   title: string = 'koalament';
   socket: any;
-  state: appStateType = 'name';
-  $standby: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  state: appStateType = 'standby';
+  $standby: BehaviorSubject<boolean> = new BehaviorSubject(true)
   // state: appStateType = 'standby';
   // state: appStateType = 'pay';
   // newComment: NewComment | null = new NewComment('milad');
