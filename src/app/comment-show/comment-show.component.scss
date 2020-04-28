@@ -12,6 +12,10 @@
         margin: 8px 16px;
         width: calc(100% - 16px * 2);
 
+        &.golden {
+            background: #f0c94d;
+        }
+
         .comment {
             color: rgba(0, 0, 0, 0.6);
             padding: 18px;
@@ -42,7 +46,7 @@ header {
         margin-left: 5px;
     }
     .txid {
-        float: right;        
+        float: right;
         img {
             vertical-align: middle;
         }

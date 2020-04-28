@@ -56,7 +56,7 @@ export class AppResolverSocketService {
                 txid: comment._txid,
                 created_at: comment.created_at,
                 created_at_fromNow: moment(comment.created_at).fromNow(),
-                currentUser: comment.name == this.newCommentS.comment.name
+                currentUser: comment.nickname == this.newCommentS.comment.name
             });
             this.$postList.next(this.postList);
             this.loadingStateS.finished();

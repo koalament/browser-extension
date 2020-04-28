@@ -1,5 +1,5 @@
 <section class="container">
-    <article *ngFor="let post of postList">
+    <article *ngFor="let post of postList" [ngClass]="{'golden': post.currentUser}">
         <header>
             <section class="name">{{post.name}}</section>
             <time>• {{post.created_at_fromNow}}</time>
