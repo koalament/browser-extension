@@ -7,6 +7,7 @@ import * as chrome from './chrome.js';
 import * as firefoxBrowser from './firefox.js';
 import { BehaviorSubject } from 'rxjs';
 import { firefox } from './browser';
+import { LoadingStateService } from './loading/loadingState.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ import { firefox } from './browser';
 export class AppComponent implements OnInit {
   title: string = 'koalament';
   socket: any;
-  newComment: NewComment = new NewComment('');
+  newComment: NewComment;
   state: appStateType = 'name';
   $standby: BehaviorSubject<boolean> = new BehaviorSubject(false)
   // state: appStateType = 'standby';
@@ -25,31 +26,31 @@ export class AppComponent implements OnInit {
 
   @ViewChild('comments') commentsElement: ElementRef;
 
-  constructor(public resolver: AppResolverSocketService) { }
+  constructor(public resolver: AppResolverSocketService, public loadingStateS: LoadingStateService) { }
 
   ngOnInit() {
+    let setName = (result) => {
+      if (result != undefined && result.name != undefined) {
+        this.newComment = new NewComment(result.name);
+        this.changeState('standby');
+      }
+    }
+
     if (!firefox(_ => {
       if (firefoxBrowser.store.available()) {
-        firefoxBrowser.store.get('name').then(result => {
-          // console.log(result);
-          this.newComment = new NewComment(result.name);
-          this.changeState('standby');
-        })
+        firefoxBrowser.store.get('name').then(setName)
+      } else {
       }
     })) {
       if (chrome.store.available()) {
-        chrome.store.get('name').then(result => {
-          // console.log(result);
-          this.newComment = new NewComment(result.name);
-          this.changeState('standby');
-        })
+        chrome.store.get('name').then(setName)
+      } else {
+
       }
     }
-  }
-
-  ngAfterViewInit() {
 
   }
+
 
   changeOnComments() {
     firefox(() => {
@@ -67,13 +68,19 @@ export class AppComponent implements OnInit {
       if (firefoxBrowser.store.available()) {
         firefoxBrowser.store.set({ name: name }).then(_ => {
           console.log('name stored on firefox cloud!');
+
         });
+      } else {
+
       }
     })) {
       if (chrome.store.available()) {
         chrome.store.set({ name: name }).then(_ => {
           console.log('name stored on cloud!');
+
         });
+      } else {
+
       }
     }
     this.changeState('comment');
