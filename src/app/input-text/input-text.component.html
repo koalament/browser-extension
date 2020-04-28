@@ -1,6 +1,20 @@
-<form action="" method="POST" (submit)="submitEvent($event)">
-    <div class="input">
-        <input type="text" name="theInput" id="theInput" placeholder="{{placeholder}}" [(ngModel)]="value" dir="auto">
-        <input type="submit" [value]="submitValue">
+<div class="cover" (click)="close($event)">
+    <div class="container" (click)="prevent($event)">
+        <div class="header">
+            <img src="assets/logo.svg" class="mini-logo" alt="koalament">
+            Koalament
+            <div class="close" (click)="close($event)">Close</div>
+        </div>
+        <div class="body">
+            <h1 class="name" dir="auto">Choose nickname for yourself first</h1>
+            <p dir="auto">watchout! you may not be able to change your nickname further.</p>
+            <form action="" method="POST" (submit)="submitEvent($event)">
+                <div class="input">
+                    <input type="text" name="theInput" id="theInput" placeholder="{{placeholder}}" [(ngModel)]="value"
+                        dir="auto">
+                    <input type="submit" [value]="submitValue">
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
