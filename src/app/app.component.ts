@@ -8,6 +8,7 @@ import * as firefoxBrowser from './firefox.js';
 import { BehaviorSubject } from 'rxjs';
 import { firefox } from './browser';
 import { LoadingStateService } from './loading/loadingState.service';
+import { NewCommentService } from './new-comment/newComment.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,6 @@ import { LoadingStateService } from './loading/loadingState.service';
 export class AppComponent implements OnInit {
   title: string = 'koalament';
   socket: any;
-  newComment: NewComment;
   state: appStateType = 'name';
   $standby: BehaviorSubject<boolean> = new BehaviorSubject(false)
   // state: appStateType = 'standby';
@@ -26,12 +26,16 @@ export class AppComponent implements OnInit {
 
   @ViewChild('comments') commentsElement: ElementRef;
 
-  constructor(public resolver: AppResolverSocketService, public loadingStateS: LoadingStateService) { }
+  constructor(
+    public resolver: AppResolverSocketService,
+    public loadingStateS: LoadingStateService,
+    public newCommentS: NewCommentService
+  ) { }
 
   ngOnInit() {
     let setName = (result) => {
       if (result != undefined && result.name != undefined) {
-        this.newComment = new NewComment(result.name);
+        this.newCommentS.comment = new NewComment(result.name);
         this.changeState('standby');
       }
     }
@@ -63,7 +67,7 @@ export class AppComponent implements OnInit {
     if (name == "" || name == undefined || name == null) {
       name = 'Unknown';
     }
-    this.newComment = new NewComment(name);
+    this.newCommentS.comment = new NewComment(name);
     if (!firefox(_ => {
       if (firefoxBrowser.store.available()) {
         firefoxBrowser.store.set({ name: name }).then(_ => {
@@ -87,7 +91,7 @@ export class AppComponent implements OnInit {
   }
 
   onCommentSubmit(comment: string) {
-    this.newComment.setComment(comment);
+    this.newCommentS.comment.setComment(comment);
     this.changeState('pay');
   }
 
@@ -97,7 +101,7 @@ export class AppComponent implements OnInit {
   }
 
   onSuccessPayment(event: any) {
-    this.newComment = new NewComment(this.newComment.name);
+    this.newCommentS.comment = new NewComment(this.newCommentS.comment.name);
     this.changeState('standby');
   }
 

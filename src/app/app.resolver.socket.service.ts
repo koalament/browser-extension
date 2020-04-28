@@ -8,16 +8,21 @@ import * as chrome from './chrome.js';
 import * as firefoxBrowser from './firefox.js';
 import { firefox } from './browser';
 import { LoadingStateService } from './loading/loadingState.service';
+import { PostType } from './post/post.type';
+import { NewCommentService } from './new-comment/newComment.service';
 
 @Injectable()
 export class AppResolverSocketService {
     private socket: any;
     private key = "https://koalament.io/";
     private event = btoa(this.key + "_" + environment.LAYER_VERSION);
-    postList: any[] = [];
-    $postList: BehaviorSubject<any[]> = new BehaviorSubject([]);
+    postList: PostType[] = [];
+    $postList: BehaviorSubject<PostType[]> = new BehaviorSubject([]);
 
-    constructor(private loadingStateS: LoadingStateService) {
+    constructor(
+        private loadingStateS: LoadingStateService,
+        private newCommentS: NewCommentService
+    ) {
 
         if (!firefox(_ => {
             firefoxBrowser.tabs.selected.url().then(url => {
@@ -47,7 +52,11 @@ export class AppResolverSocketService {
             this.loadingStateS.loading();
             this.postList.push({
                 comment: comment.text,
-                name: comment.nickname
+                name: comment.nickname || 'Unknown',
+                txid: comment._txid,
+                created_at: comment.created_at,
+                created_at_fromNow: moment(comment.created_at).fromNow(),
+                currentUser: comment.name == this.newCommentS.comment.name
             });
             this.$postList.next(this.postList);
             this.loadingStateS.finished();

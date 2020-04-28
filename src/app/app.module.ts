@@ -14,6 +14,7 @@ import { CommentShowComponent } from './comment-show/comment-show.component';
 import { AppResolverSocketService } from './app.resolver.socket.service';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingStateService } from './loading/loadingState.service';
+import { NewCommentService } from './new-comment/newComment.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LoadingStateService } from './loading/loadingState.service';
   ],
   providers: [
     AppResolverSocketService,
-    LoadingStateService
+    LoadingStateService,
+    NewCommentService
   ],
   bootstrap: [AppComponent]
 })
