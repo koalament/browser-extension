@@ -1,26 +1,28 @@
 section {
     height: 2px;
-    background: #e9b200;
+    // background: #e9b200;
+    background-image: linear-gradient(to right, white , #ff7800, #e9b100, white);
+    background-size: 150% 150%;
     border-radius: 5px;
     width: 80%;
     margin-left: 0%;
-    animation-name: loading;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    // margin-bottom: -2px;
+    animation: loading 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
 }
 
 @keyframes loading {
     0% {
         width: 0%;
         margin-left: 0%;
+        background-position:50% 0%
     }
     50% {
-        width: 50%;
-        margin-left: 25%;
+        width: 90%;
+        margin-left: 5%;
+        background-position:50% 150%
     }
     100% {
         width: 0%;
         margin-left: 100%;
+        background-position:0% 50%
     }
 }
