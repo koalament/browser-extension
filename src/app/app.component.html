@@ -5,17 +5,20 @@
     </header>
     <section class="comments" (click)="standby()" #comments>
         <app-no-comment *ngIf="(resolver.$postList | async).length == 0"></app-no-comment>
-        <app-comment-show *ngIf="(resolver.$postList | async).length > 0" [postList]="(resolver.$postList | async)" (change)="changeOnComments()">
+        <app-comment-show *ngIf="(resolver.$postList | async).length > 0" [postList]="(resolver.$postList | async)"
+            (change)="changeOnComments()">
         </app-comment-show>
     </section>
     <section class="input">
         <app-input-text *ngIf="state == 'name'" placeholder="Write your nickname first..."
-            (onSubmit)="onNameSubmit($event)" submitValue="NEXT" value="{{newCommentS.comment?.name || ''}}"></app-input-text>
+            (onSubmit)="onNameSubmit($event)" submitValue="NEXT" value="{{newCommentS.comment?.name || ''}}"
+            (onClose)="changeState('comment')"></app-input-text>
         <app-input-textarea *ngIf="state == 'comment' || state =='standby'" [standby]="$standby"
             placeholder="Write your comment..." [label]="newCommentS.comment.name" (onSubmit)="onCommentSubmit($event)"
             value="{{newCommentS.comment.content}}" (onChangeLabel)="changeState('name')">
         </app-input-textarea>
-        <app-comment-confirmation *ngIf="state == 'pay'" name="{{newCommentS.comment.name}}" content="{{newCommentS.comment.content}}"
-            (onClose)="changeState('comment')" (onSuccess)="onSuccessPayment($event)"></app-comment-confirmation>
+        <app-comment-confirmation *ngIf="state == 'pay'" name="{{newCommentS.comment.name}}"
+            content="{{newCommentS.comment.content}}" (onClose)="changeState('comment')"
+            (onSuccess)="onSuccessPayment($event)"></app-comment-confirmation>
     </section>
 </section>
