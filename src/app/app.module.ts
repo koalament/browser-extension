@@ -13,6 +13,7 @@ import { CommentConfirmationComponent } from './comment-confirmation/comment-con
 import { CommentShowComponent } from './comment-show/comment-show.component';
 import { AppResolverSocketService } from './app.resolver.socket.service';
 import { LoadingComponent } from './loading/loading.component';
+import { LoadingStateService } from './loading/loadingState.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LoadingComponent } from './loading/loading.component';
     // AppRoutingModule
   ],
   providers: [
-    AppResolverSocketService
+    AppResolverSocketService,
+    LoadingStateService
   ],
   bootstrap: [AppComponent]
 })
