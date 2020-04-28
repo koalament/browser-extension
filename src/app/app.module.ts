@@ -12,6 +12,7 @@ import { ButtonComponent } from './input-textarea/button/button.component';
 import { CommentConfirmationComponent } from './comment-confirmation/comment-confirmation.component';
 import { CommentShowComponent } from './comment-show/comment-show.component';
 import { AppResolverSocketService } from './app.resolver.socket.service';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppResolverSocketService } from './app.resolver.socket.service';
     InputTextareaComponent,
     ButtonComponent,
     CommentConfirmationComponent,
-    CommentShowComponent
+    CommentShowComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

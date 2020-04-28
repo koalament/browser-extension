@@ -1,0 +1,26 @@
+section {
+    height: 2px;
+    background: #e9b200;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: 0%;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    // margin-bottom: -2px;
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+        margin-left: 0%;
+    }
+    50% {
+        width: 50%;
+        margin-left: 25%;
+    }
+    100% {
+        width: 0%;
+        margin-left: 100%;
+    }
+}
