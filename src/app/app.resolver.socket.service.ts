@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { connect } from 'socket.io-client';
-import { environment } from "../environments/environment";
 import { BehaviorSubject } from 'rxjs';
+import { connect } from 'socket.io-client';
+import * as moment from 'moment';
+
+import { environment } from "../environments/environment";
 import * as chrome from './chrome.js';
 import * as firefoxBrowser from './firefox.js';
-import * as moment from 'moment';
 import { firefox } from './browser';
-
+import { LoadingStateService } from './loading/loadingState.service';
 
 @Injectable()
 export class AppResolverSocketService {
@@ -16,7 +17,7 @@ export class AppResolverSocketService {
     postList: any[] = [];
     $postList: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
-    constructor() {
+    constructor(private loadingStateS: LoadingStateService) {
 
         if (!firefox(_ => {
             firefoxBrowser.tabs.selected.url().then(url => {
@@ -43,12 +44,15 @@ export class AppResolverSocketService {
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
         this.socket.on(this.event, (comment) => {
+            this.loadingStateS.loading();
             this.postList.push({
                 comment: comment.text,
                 name: comment.nickname
             });
             this.$postList.next(this.postList);
+            this.loadingStateS.finished();
         });
+        this.loadingStateS.loading();
         this.socket.emit("read", {
             key: this.key,
             from: 0,
@@ -62,6 +66,7 @@ export class AppResolverSocketService {
             // console.log(this.postList);
             // chrome.browserAction.setBadgeText("" + this.postList.length);
             this.$postList.next(this.postList);
+            this.loadingStateS.finished();
         });
     }
 
