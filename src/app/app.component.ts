@@ -30,7 +30,15 @@ export class AppComponent implements OnInit {
     public resolver: AppResolverSocketService,
     public loadingStateS: LoadingStateService,
     public newCommentS: NewCommentService
-  ) { }
+  ) {
+    resolver.$offline.subscribe((isOffline: boolean) => {
+      if (isOffline) {
+        this.changeState('offline');
+      } else {
+        this.changeState('standby');
+      }
+    });
+  }
 
   ngOnInit() {
     let setName = (result) => {

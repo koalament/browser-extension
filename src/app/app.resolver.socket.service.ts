@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { connect } from 'socket.io-client';
 import * as moment from 'moment';
 
@@ -16,6 +16,7 @@ export class AppResolverSocketService {
     private socket: any;
     private key = "https://koalament.io/";
     private event = btoa(this.key + "_" + environment.LAYER_VERSION);
+    $offline: Subject<boolean> = new Subject();
     postList: PostType[] = [];
     $postList: BehaviorSubject<PostType[]> = new BehaviorSubject([]);
 
@@ -48,10 +49,13 @@ export class AppResolverSocketService {
 
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
-        this.socket.on('connect_error', function(err) {
-            // handle server error here
-            console.log('Error connecting to server');
-          });
+        this.socket.on('connect_error', (err) => {            
+            this.$offline.next(true);
+            this.loadingStateS.finished();
+        });
+        this.socket.on('connect', (err) => {
+            this.$offline.next(false);
+        });
         this.socket.on(this.event, (comment) => {
             this.loadingStateS.loading();
             this.postList.push({

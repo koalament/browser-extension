@@ -1,1 +1,1 @@
-export type appStateType = 'name' | 'comment' | 'pay' | 'standby';
+export type appStateType = 'name' | 'comment' | 'pay' | 'standby' | 'offline';
