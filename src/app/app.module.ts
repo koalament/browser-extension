@@ -15,6 +15,7 @@ import { AppResolverSocketService } from './app.resolver.socket.service';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingStateService } from './loading/loadingState.service';
 import { NewCommentService } from './new-comment/newComment.service';
+import { OfflineComponent } from './offline/offline.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewCommentService } from './new-comment/newComment.service';
     ButtonComponent,
     CommentConfirmationComponent,
     CommentShowComponent,
-    LoadingComponent
+    LoadingComponent,
+    OfflineComponent
   ],
   imports: [
     BrowserModule,

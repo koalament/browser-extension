@@ -60,9 +60,7 @@ export class AppComponent implements OnInit {
 
       }
     }
-
   }
-
 
   changeOnComments() {
     firefox(() => {
@@ -114,6 +112,8 @@ export class AppComponent implements OnInit {
   }
 
   standby() {
-    this.changeState('standby');
+    if (this.state != 'offline') {
+      this.changeState('standby');
+    }
   }
 }

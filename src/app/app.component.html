@@ -4,7 +4,8 @@
         <app-header></app-header>
     </header>
     <section class="comments" (click)="standby()" #comments>
-        <app-no-comment *ngIf="(resolver.$postList | async).length == 0"></app-no-comment>
+        <app-offline *ngIf="(resolver.$offline | async)"></app-offline>
+        <app-no-comment *ngIf="(resolver.$postList | async).length == 0 && !(resolver.$offline | async)"></app-no-comment>
         <app-comment-show *ngIf="(resolver.$postList | async).length > 0" [postList]="(resolver.$postList | async)"
             (change)="changeOnComments()">
         </app-comment-show>

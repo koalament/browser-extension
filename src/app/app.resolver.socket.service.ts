@@ -47,9 +47,13 @@ export class AppResolverSocketService {
         }
     }
 
+    retry() {
+        this.resolveFromSocket();
+    }
+
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
-        this.socket.on('connect_error', (err) => {            
+        this.socket.on('connect_error', (err) => {
             this.$offline.next(true);
             this.loadingStateS.finished();
         });
@@ -96,4 +100,5 @@ export class AppResolverSocketService {
             created_at_fromNow: moment(comment.created_at).fromNow()
         }
     }
+
 }
