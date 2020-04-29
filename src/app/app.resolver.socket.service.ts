@@ -48,6 +48,10 @@ export class AppResolverSocketService {
 
     private resolveFromSocket() {
         this.socket = connect(environment.SOCKET_ENDPOINT, { reconnection: false });
+        this.socket.on('connect_error', function(err) {
+            // handle server error here
+            console.log('Error connecting to server');
+          });
         this.socket.on(this.event, (comment) => {
             this.loadingStateS.loading();
             this.postList.push({
