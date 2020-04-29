@@ -59,6 +59,8 @@ div.header {
         overflow-wrap: break-word;
         white-space: pre-line;
         color: rgba(0, 0, 0, 0.6);
+        max-height: 380px;
+        overflow-y: scroll;
 
         h1 {
             font-weight: bold;
