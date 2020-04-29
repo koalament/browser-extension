@@ -94,13 +94,20 @@ div.input {
         border: 0;
         background: inherit;
         height: 34px;
-        width: calc(100% - 40px - 16px - 8px * 2);
+        width: calc(100% - 40px - 32px - 16px - 8px * 2);
         padding: 0 8px;
 
         &:focus {
             bottom: 0;
             outline: 0;
         }
+    }
+
+    .counter {
+        text-align: right;
+        font-size: 10px;
+        color: #828282;
+        display: inline;
     }
     input[type="submit"] {
         font-weight: bold;

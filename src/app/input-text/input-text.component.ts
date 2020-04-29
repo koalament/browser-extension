@@ -11,6 +11,8 @@ export class InputTextComponent implements OnInit {
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   @Output() onClose: EventEmitter<void> = new EventEmitter();
   @Input() value: string = "";
+  maxLength: number = 15;
+
 
   constructor() { }
 
@@ -18,10 +20,20 @@ export class InputTextComponent implements OnInit {
   }
 
   submitEvent(e: Event) {
+
+    if (this.value.length > this.maxLength) {
+      this.value = this.value.substr(0, this.maxLength);
+    }
     this.onSubmit.emit(this.value);
-    e.preventDefault();
   }
 
+  countLength(e: any) {
+    if (e.key == "Backspace" || e.key == "Delete") return;
+    if (this.value.length >= this.maxLength) {
+      this.value = this.value.substr(0, this.maxLength);
+      e.preventDefault();
+    }
+  }
   close(e) {
     this.onClose.emit();
   }
