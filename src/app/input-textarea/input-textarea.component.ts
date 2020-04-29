@@ -35,7 +35,7 @@ export class InputTextareaComponent implements OnInit {
     if (e.key == "Backspace" || e.key == "Delete") return;
     if (this.value.length >= this.maxLength) {
       this.value = this.value.substr(0, this.maxLength);
-      e.preventDefault();
+      // e.preventDefault();
     }
   }
 

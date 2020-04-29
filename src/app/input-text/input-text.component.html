@@ -11,7 +11,7 @@
             <form action="" method="POST" (submit)="submitEvent($event)">
                 <div class="input">
                     <input type="text" name="theInput" id="theInput" placeholder="{{placeholder}}" [(ngModel)]="value"
-                        (keydown)="countLength($event)" dir="auto">
+                        (keyup)="countLength($event)" dir="auto">
                     <div class="counter">{{value.length}} / {{maxLength}}</div>
                     <input type="submit" [value]="submitValue">
                 </div>
