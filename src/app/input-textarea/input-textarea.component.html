@@ -2,7 +2,7 @@
     <div class="input" [ngClass]="{'standby': (standby|async)}">
         <label *ngIf="!(standby|async)" dir="auto" (click)="changeLabel()">{{label}}</label>
         <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value"
-            (keydown)="countLength($event)" dir="auto"></textarea>
+            (keydown)="countLength($event)" (change)="countLength($event)" dir="auto"></textarea>
         <footer *ngIf="!(standby|async)">
             <div class="counter">{{value.length}} / {{maxLength}}</div>
         </footer>
