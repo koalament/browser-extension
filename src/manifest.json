@@ -4,6 +4,12 @@
   "manifest_version": 2,
   "description": "Koala open comment",
   "homepage_url": "https://koalament.io",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{a3949129-e6ab-45b8-9ef9-39f65c3020a3}",
+      "strict_min_version": "42.0"
+    }
+  },
   "icons": {
     "16": "assets/icon/koala-icon04-16.png",
     "48": "assets/icon/koala-icon04-48.png",
