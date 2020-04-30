@@ -108,7 +108,12 @@ div.input {
         font-size: 10px;
         color: #828282;
         display: inline;
+
+        &.red {
+            color: #d55848;
+        }
     }
+
     input[type="submit"] {
         font-weight: bold;
         font-size: 14px;

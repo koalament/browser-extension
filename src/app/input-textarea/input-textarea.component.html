@@ -4,7 +4,7 @@
         <textarea name="theText" id="theText" placeholder="{{placeholder}}" [(ngModel)]="value"
             (keyup)="countLength($event)" (change)="countLength($event)" dir="auto"></textarea>
         <footer *ngIf="!(isStandby|async)">
-            <div class="counter">{{value.length}} / {{maxLength}}</div>
+            <div class="counter" [ngClass]="{'red': value.length > maxLength}">{{value.length}} / {{maxLength}}</div>
         </footer>
         <app-input-textarea-button *ngIf="!(isStandby|async)" label="POST" stringLength="{{value.length}}"
             (click)="submitEvent($event)"></app-input-textarea-button>
