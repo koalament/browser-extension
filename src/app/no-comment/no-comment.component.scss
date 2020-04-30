@@ -1,13 +1,16 @@
+.center {
+    margin-bottom: 110px;
+}
 img {
-    margin: 90px auto 0;
+    margin: 0 auto;
     display: block;
 }
-p{
+p {
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
     line-height: 20px;
-    
-    &.shadow{
+
+    &.shadow {
         color: #828282;
         margin-top: 8px;
     }
