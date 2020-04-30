@@ -80,7 +80,7 @@ export class CommentConfirmationComponent implements OnInit {
         buttonId: "234325",
         outputs: [
           {
-            to: '14781',
+            to: '1CJh6pQcYpsz3JXbhyZ6Pc6X1BRb42dbuJ',
             amount: '0.005',
             currency: 'USD'
           },
