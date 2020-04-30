@@ -11,14 +11,21 @@ export class InputTextareaComponent implements OnInit {
   @Input('placeholder') placeholder: string = "";
   @Input('label') label: string = "name";
   @Input() value: string = "";
-  @Input() standby: BehaviorSubject<boolean>;
+  @Input() standby: BehaviorSubject<boolean> = new BehaviorSubject(false);
   @Output('onSubmit') onSubmit: EventEmitter<string> = new EventEmitter<string>();
   @Output() onChangeLabel: EventEmitter<void> = new EventEmitter();
+  isStandby: BehaviorSubject<boolean> = new BehaviorSubject(false);
   maxLength: number = 740;
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+    this.standby.subscribe(isStandby => {
+      this.isStandby.next(isStandby && this.value == "");
+    })
   }
 
   submitEvent(e: Event) {
