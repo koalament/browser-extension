@@ -22,7 +22,8 @@ export class InputTextComponent implements OnInit {
   submitEvent(e: Event) {
 
     if (this.value.length > this.maxLength) {
-      this.value = this.value.substr(0, this.maxLength);
+      return e.preventDefault();
+      // this.value = this.value.substr(0, this.maxLength);
     }
     this.onSubmit.emit(this.value);
   }
@@ -30,8 +31,8 @@ export class InputTextComponent implements OnInit {
   countLength(e: any) {
     if (e.key == "Backspace" || e.key == "Delete") return;
     if (this.value.length >= this.maxLength) {
-      this.value = this.value.substr(0, this.maxLength);
-      // e.preventDefault();
+      // this.value = this.value.substr(0, this.maxLength);
+      e.preventDefault();
     }
   }
   close(e) {
