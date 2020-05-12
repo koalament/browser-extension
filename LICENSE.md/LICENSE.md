@@ -56,8 +56,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-3. The data created by the software has to comply with the provided protocol by the Koalament team which is as follows: 
+3 - The data created by the software has to comply with the provided protocol by the Koalament team which is as follows: 
 Koalament <format> <message> <optional fields>
   
-4. Every transaction including user-generated data(comment, reply, etc.) has to have an output to the following address: "1CJh6pQcYpsz3JXbhyZ6Pc6X1BRb42dbuJ", the amount is not important.
+4 - Every transaction including user-generated data(comment, reply, etc.) has to have an output to the following address: "1CJh6pQcYpsz3JXbhyZ6Pc6X1BRb42dbuJ", the amount is not important.
 
