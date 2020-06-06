@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-
-import * as moneyButton from "./money-button.js";
-import * as theGzip from "./gzip.js";
-import { Buffer } from 'buffer';
 import * as chrome from '../chrome.js';
 import * as firefoxBrowser from '../firefox.js';
-import { firefox } from '../browser.js';
+import * as moneyButton from "./money-button.js";
+import * as theGzip from "./gzip.js";
 
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+
+import { Buffer } from 'buffer';
+import { firefox } from '../browser.js';
 
 const doc = window.document;
 
@@ -36,7 +36,7 @@ export class CommentConfirmationComponent implements OnInit {
     if (!firefox(_ => {
       firefoxBrowser.tabs.selected.url().then(url => {
         console.log(url);
-        
+
         this.key = url;
         this.generateMoneyButton(isReply);
       });
@@ -74,6 +74,29 @@ export class CommentConfirmationComponent implements OnInit {
   generateMoneyButton(isReply) {
     let data = { nickname: this.name, key: this.key, text: this.content };
     theGzip.gzip(Buffer.from((!isReply ? '0' : '1') + ' ' + JSON.stringify(data), "utf-8")).then(compressed => {
+
+      // const imb = new moneyButton({ clientIdentifier: '36a0fd92080022d9234e610de329e13d' })
+      // imb.swipe({
+      //     outputs: [
+      //       {
+      //         to: '1CJh6pQcYpsz3JXbhyZ6Pc6X1BRb42dbuJ',
+      //         amount: '0.005',
+      //         currency: 'USD'
+      //       },
+      //       {
+      //         script: 'OP_FALSE OP_RETURN ' + this.toHex('koalament 1 gzip ' + compressed.toString("base64")),
+      //         amount: '0',
+      //         currency: 'USD'
+      //       }
+      //     ],
+      //     onPayment: (arg) => {
+      //       this.onSuccess.emit(arg);
+      //     },
+      //     onError: (arg) => {
+      //       // alert("Something went wrong!"); console.log('onError', arg) 
+      //     }
+      //   }).then(({ payment }) => this.onSuccess.emit(payment), error => console.log(error))
+
       moneyButton.render(this.moneyBtnHere.nativeElement, {
         label: "Send",
         clientIdentifier: "36a0fd92080022d9234e610de329e13d",

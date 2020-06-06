@@ -18,6 +18,612 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-var moneyButton = function (a) { 'use strict'; function b(a) { switch (a.arrayFormat) { case "index": return (b, d, e) => null === d ? [c(b, a), "[", e, "]"].join("") : [c(b, a), "[", c(e, a), "]=", c(d, a)].join(""); case "bracket": return (b, d) => null === d ? [c(b, a), "[]"].join("") : [c(b, a), "[]=", c(d, a)].join(""); default: return (b, d) => null === d ? c(b, a) : [c(b, a), "=", c(d, a)].join(""); } } function c(a, b) { return b.encode ? b.strict ? v(a) : encodeURIComponent(a) : a } function d(a, b, c) { return b in a ? Object.defineProperty(a, b, { value: c, enumerable: !0, configurable: !0, writable: !0 }) : a[b] = c, a } function e(a, b) { var c = Object.keys(a); if (Object.getOwnPropertySymbols) { var d = Object.getOwnPropertySymbols(a); b && (d = d.filter(function (b) { return Object.getOwnPropertyDescriptor(a, b).enumerable })), c.push.apply(c, d) } return c } function f(a) { for (var b, c = 1; c < arguments.length; c++)b = null == arguments[c] ? {} : arguments[c], c % 2 ? e(b, !0).forEach(function (c) { d(a, c, b[c]) }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(a, Object.getOwnPropertyDescriptors(b)) : e(b).forEach(function (c) { Object.defineProperty(a, c, Object.getOwnPropertyDescriptor(b, c)) }); return a } function g() { return Math.floor(1e17 * Math.random()).toString() } function h() { D && (D.parentNode.removeChild(D), D = null) } function i({ title: a, message: b, buttonText: c, buttonUrl: d, buttonText2: e, buttonUrl2: f }) { h(), D = document.createElement("div"), D.setAttribute("style", "display: flex; justify-content: center; font-family: sans-serif;"); let g = document.getElementsByClassName("popup__moneybutton").item(0); null === g && (g = t(), document.body.appendChild(g)), g.appendChild(D), D.innerHTML = "\n    <div class=\"close__moneybutton\"></div>\n    <div class=\"hint__moneybutton\">\n      <div class=\"content__moneybutton\">\n        <span class=\"title__moneybutton\">".concat(a, "</span>\n        <span class=\"text__moneybutton\">").concat(b, "</span>\n        <div class=\"buttonsWrapper__moneybutton\">\n          ").concat(c ? "<a href=\"".concat(d, "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button__moneybutton red__moneybutton\">").concat(c, "</a>") : "", "\n          ").concat(e ? "<a href=\"".concat(f, "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"button__moneybutton nofill__moneybutton\">").concat(e, "</a>") : "", "\n        </div>\n      </div>\n      <style>\n        .hint__moneybutton .button__moneybutton,\n        .hint__moneybutton .title__moneybutton{\n          font-weight:700\n        }\n        .hint__moneybutton .button__moneybutton,\n        .hint__moneybutton .content__moneybutton{\n            color:#fff;\n            box-sizing:border-box;\n            display:flex;\n            font-family: 'IBM Plex Sans', sans-serif;\n        }\n        .hint__moneybutton a{\n            text-decoration:none;\n        }\n        .hint__moneybutton{\n            min-width:254px;\n            position:fixed;\n            bottom: 10px;\n            right: 10px;\n            max-width: 300px;\n            z-index: 1000;\n        }\n        .hint__moneybutton .content__moneybutton{\n          top:0;\n          left:0;\n          right:0;\n          bottom:0;\n          z-index:1\n        }\n        .hint__moneybutton .content__moneybutton{\n            background-color:#191927;\n            padding:30px;\n            border-radius:10px;\n            bottom:19px;\n            left:0;\n            right:0;\n            flex-direction:column;\n            align-content:center;\n            align-items:flex-start;\n            min-width: 260px;\n        }\n        .hint__moneybutton .title__moneybutton{\n            font-size:20px;\n            margin-bottom:10px\n        }\n        .hint__moneybutton .text__moneybutton{\n            font-size:14px;\n            margin-bottom:20px\n        }\n        .hint__moneybutton .buttonsWrapper__moneybutton{\n            width:100%;\n            display:flex;\n            justify-content:space-between;\n            position:relative;\n            z-index:2\n        }\n        .hint__moneybutton .button__moneybutton{\n            text-align:center;\n            font-size:12px;\n            width:calc(50% - 10px);\n            height:35px;\n            padding:0 10px;\n            border-radius:20px;\n            align-items:center;\n            justify-content:center;\n            transition:all 250ms ease-out;\n            cursor:pointer\n        }\n        .hint__moneybutton .button__moneybutton.add__moneybutton {\n            width: auto;\n        }\n        .hint__moneybutton .button__moneybutton.red__moneybutton{\n            background-color:#e54d3f\n        }\n        .hint__moneybutton .button__moneybutton.red__moneybutton:hover{\n            background-color:#ce4134\n        }\n        .hint__moneybutton .button__moneybutton.nofill__moneybutton{\n            border:1px solid #fff\n        }\n        .hint__moneybutton .button__moneybutton.nofill__moneybutton:hover{\n            color:#191927;\n            background-color:#fff\n        }\n        .close__moneybutton {\n          background-color: rgba(255, 255, 255, 0.6);\n          position: fixed;\n          top: 0;\n          left: 0;\n          width: 100vw;\n          height: 100vh;\n          z-index: 999;\n        }\n        @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700');\n      </style>\n    </div>\n  "); const i = document.getElementsByClassName("close__moneybutton").item(0); i.addEventListener("click", h) } function j(a, b = {}) { E.has(a) ? l(a, b) : k(a, b) } function k(a, b) { m(a, b); const c = o(b); a.appendChild(c), a.style.position = "relative", a.style.display = "inline-block", a.style.width = "280px", a.style.height = "50px", c.contentWindow.onunload = () => { (null === c.contentWindow || c.contentWindow.location.href === p()) && (E.delete(a), a.innerHTML = "") }; const d = new A(c.contentWindow); d.send("initial-attributes", n(b), {}), d.subscribe("ready", () => { d.enableDeliver(), b.onLoad && "function" == typeof b.onLoad && b.onLoad() }), d.subscribe("payment-success", a => q(a, b)), d.subscribe("crypto-operations-success", a => r(a, b)), d.subscribe("error.insufficient-balance", a => s(a, b)), d.subscribe("error.unexpected-error", a => s(a, b)), d.subscribe("error.crypto-operations-error", a => s(a, b)), d.subscribe("error.not-logged-in", a => s(a, b)), d.subscribe("error.compatibility", a => s(a, b)), d.subscribe("error.safari-compatibility", a => s(a, b)), d.subscribe("error.too-long-mempool-chain", a => s(a, b)), d.subscribe("error", a => s(a, b)), d.start(), E.set(a, d) } function l(a, b) { const c = E.get(a); c.send("attributes-updated", n(b)), c.subscribe("payment-success", a => q(a, b)), c.subscribe("crypto-operations-success", a => r(a, b)), c.subscribe("error.insufficient-balance", a => s(a, b)), c.subscribe("error.unexpected-error", a => s(a, b)), c.subscribe("error.crypto-operations-error", a => s(a, b)), c.subscribe("error.not-logged-in", a => s(a, b)), c.subscribe("error.compatibility", a => s(a, b)), c.subscribe("error.safari-compatibility", a => s(a, b)), c.subscribe("error.too-long-mempool-chain", a => s(a, b)), c.subscribe("error", a => s(a, b)) } function m(a, b) { if (!(a instanceof Element)) throw new Error("The first argument must be of type Element."); if (0 === Object.keys(b).length) throw new Error("Please, specify the button's attributes."); if (void 0 !== b.buttonData && "string" != typeof b.buttonData) throw new Error("\"buttonData\" should be a string.") } function n(a) { return { to: a.to, amt: a.amount, edt: a.editable, ccy: a.currency, lbl: a.label, scsmsg: a.successMessage, opd: a.opReturn, os: JSON.stringify(a.outputs), cid: a.clientIdentifier, bid: a.buttonId, bdt: a.buttonData, t: a.type, dev: a.devMode, dsbd: a.disabled, crop: JSON.stringify(a.cryptoOperations) } } function o(a = {}) { const b = document.createElement("iframe"); return b.style.border = "none", b.style.width = "280px", b.style.height = "50px", b.scrolling = "no", b.src = p(), b } function p() { return "".concat(B, "/iframe/v2?").concat(w({ format: "postmessage" })) } function q(a, b) { const { payment: c } = a; c && "function" == typeof b.onPayment && b.onPayment.call(window, c) } function r(a, b) { const { cryptoOperations: c } = a; c && "function" == typeof b.onCryptoOperations && b.onCryptoOperations.call(window, c) } function s(a, b) { const { error: c, popup: d } = a; d && i(d), c && "function" == typeof b.onError && b.onError.call(window, new Error(c)) } function t() { const a = document.createElement("div"); return a.className = "popup__moneybutton", a.style.position = "relative", a.style.display = "flex", a.style.justifyContent = "center", a } function u(a) { const b = {}; for (const c in a) { const d = a[c]; if (!C.includes(c)) { console.warn("Unexpected data attribute: ".concat(c, ".")); continue } switch (c) { case "outputs": let a; try { a = JSON.parse(d) } catch (b) { a = null } a instanceof Array ? b[c] = a : console.warn("The value provided for ".concat(c, " is not a valid JSON array.")); break; case "cryptoOperations": let e; try { e = JSON.parse(d) } catch (a) { e = [] } e instanceof Array ? b[c] = e : console.warn("cryptoOperations should be an array"); break; case "devMode": b[c] = "true" === d; break; case "onPayment": case "onError": case "onLoad": "function" == typeof window[d] ? b[c] = window[d] : console.warn("The value provided for ".concat(c, " is not a function in the global scope.")); break; default: b[c] = d; } } return b } var v = a => encodeURIComponent(a).replace(/[!'()*]/g, a => "%".concat(a.charCodeAt(0).toString(16).toUpperCase())), w = (a, d) => { d = Object.assign({ encode: !0, strict: !0, arrayFormat: "none" }, d), !1 === d.sort && (d.sort = () => { }); const e = b(d); return a ? Object.keys(a).sort(d.sort).map(b => { const f = a[b]; if (void 0 === f) return ""; if (null === f) return c(b, d); if (Array.isArray(f)) { const a = []; for (const c of f.slice()) void 0 !== c && a.push(e(b, c, a.length)); return a.join("&") } return c(b, d) + "=" + c(f, d) }).filter(a => 0 < a.length).join("&") : "" }; class x { constructor(a) { this.keyDefined = b => b in a, this.getValue = b => a[b] } get(a) { if (this.keyDefined(a)) return this.getValue(a); throw new Error("Unknown configuration: ".concat(a)) } } const y = new class { constructor() { this.variables = {} } build() { return new x(this.variables) } addValue(a, b) { if (void 0 === b) throw new Error("Failed to add \"".concat(a, "\" property. The value cannot be undefined")); if (a in this.variables) throw new Error("\"".concat(a, "\" already has a value defined.")); return this.variables[a] = b, this } addValueWithDefault(a, b, c) { if (void 0 === c) throw new Error("Failed to add \"".concat(a, "\" property. Default value cannot be undefined")); return this.addValue(a, void 0 === b ? c : b) } }().addValue("NETWORK", "mainnet").addValue("MONEY_BUTTON_WEBAPP_PROXY_URI", "https://www.moneybutton.com").build(), z = y.get("MONEY_BUTTON_WEBAPP_PROXY_URI"); class A { constructor(a) { d(this, "start", () => { window.addEventListener("message", this._onMessageReceived, !1) }), d(this, "enableDeliver", () => { this._deliverMessages = !0, this._pendingMessages.forEach(a => this.send(a.topic, a.payload, a.extraPayload)), this._pendingMessages = [] }), d(this, "finalize", () => { window.removeEventListener("message", this._onMessageReceived, !1) }), d(this, "subscribe", (a, b) => { this.handlers[a] = b }), d(this, "_onMessageReceived", a => { if (a.source !== this.targetWindow) return; if (!a.data || !a.data.v1) return; const b = a.data.v1, c = this.handlers[b.topic]; c && c(b.payload, b.topic, b.messageId) }), d(this, "send", (a, b, c = {}) => { if (!this._deliverMessages) this._pendingMessages = [...this._pendingMessages, { topic: a, payload: b, extraPayload: c }]; else { const d = g(); this.targetWindow.postMessage(f({}, { v1: { topic: a, payload: b, messageId: d } }, {}, c), "*") } }), d(this, "sendInsufficientBalanceError", () => { const a = { error: "insufficient balance", popup: { title: "Low balance", message: "Your balance is too low to make this payment.", buttonText: "Add Money", buttonUrl: "".concat(z, "/money") } }; this.send("error.insufficient-balance", a, a) }), d(this, "sendUnexpectedError", a => { const b = { error: "unexpected error", popup: { title: "Unexpected Error", message: a.message } }; this.send("error.unexpected-error", b, b) }), d(this, "sendCryptoOperationsError", a => { const b = { error: "crypto operations error", popup: { title: "Crypto Operations error", message: a.message } }; this.send("error.crypto-operations-error", b, b) }), d(this, "sendPaymentSuccess", a => { const b = { payment: a }; this.send("payment-success", b, b) }), d(this, "sendCryptoOperationsSuccess", a => { const b = { cryptoOperations: a }; this.send("crypto-operations-success", b, b) }), d(this, "sendNotLoggedInError", () => { const a = { error: "not logged in", popup: { title: "Money Button", message: "Money Button is a simple payment system. Join Money Button to make this payment.", buttonText: "Sign up", buttonUrl: "".concat(z, "/register"), buttonText2: "Log in", buttonUrl2: "".concat(z, "/login") } }; this.send("error.not-logged-in", a, a) }), d(this, "sendCompatibilityIssue", a => { const b = { error: "compatibility", message: a.message, popup: { title: "Compatibility", message: a.message } }; this.send("error.compatibility", b, b) }), d(this, "sendSafaryIssueHint", () => { const a = { error: "safari privacy", popup: { title: "Money Button", message: "Money Button is a simple payment system. Enable Money Button on Safari and log in to make this payment.", buttonUrl: "https://blog.moneybutton.com/2018/09/24/how-to-enable-money-button-on-safari-and-ios/", buttonText: "Enable" } }; this.send("error.safari-compatibility", a, a) }), this.handlers = {}, this.targetWindow = a, this._pendingMessages = [], this._deliverMessages = !1 } } const B = "https://www.moneybutton.com", C = ["to", "amount", "currency", "label", "successMessage", "opReturn", "outputs", "cryptoOperations", "clientIdentifier", "buttonId", "buttonData", "type", "onPayment", "onError", "onLoad", "devMode", "editable", "disabled"]; let D = null; const E = new Map; return document.addEventListener("DOMContentLoaded", function () { if (!window.moneyButton.alreadyLoaded) { window.moneyButton.alreadyLoaded = !0; const a = t(); document.body.appendChild(a); const b = document.getElementsByClassName("money-button"); for (let a = 0; a < b.length; ++a) { const c = b.item(a); try { const a = u(c.dataset); 0 < Object.keys(a).length && j(c, a), console.log("Money Button: added button.") } catch (a) { console.error("Money Button: adding button failed.", a) } } } }), a.render = j, a }({});
+var moneyButton = function (e) {
+  "use strict";
+
+  function t(e, t) {
+    return t.encode ? t.strict ? encodeURIComponent(e).replace(/[!'()*]/g, e => "%".concat(e.charCodeAt(0).toString(16).toUpperCase())) : encodeURIComponent(e) : e
+  }
+  var n = (e, n) => {
+    if (!e) return "";
+    const o = function (e) {
+        switch (e.arrayFormat) {
+          case "index":
+            return n => (o, r) => {
+              const s = o.length;
+              return void 0 === r || e.skipNull && null === r ? o : null === r ? [...o, [t(n, e), "[", s, "]"].join("")] : [...o, [t(n, e), "[", t(s, e), "]=", t(r, e)].join("")]
+            };
+          case "bracket":
+            return n => (o, r) => void 0 === r || e.skipNull && null === r ? o : null === r ? [...o, [t(n, e), "[]"].join("")] : [...o, [t(n, e), "[]=", t(r, e)].join("")];
+          case "comma":
+            return n => (o, r) => null == r || 0 === r.length ? o : 0 === o.length ? [
+              [t(n, e), "=", t(r, e)].join("")
+            ] : [
+              [o, t(r, e)].join(",")
+            ];
+          default:
+            return n => (o, r) => void 0 === r || e.skipNull && null === r ? o : null === r ? [...o, t(n, e)] : [...o, [t(n, e), "=", t(r, e)].join("")]
+        }
+      }(n = Object.assign({
+        encode: !0,
+        strict: !0,
+        arrayFormat: "none"
+      }, n)),
+      r = Object.assign({}, e);
+    if (n.skipNull)
+      for (const e of Object.keys(r)) void 0 !== r[e] && null !== r[e] || delete r[e];
+    const s = Object.keys(r);
+    return !1 !== n.sort && s.sort(n.sort), s.map(r => {
+      const s = e[r];
+      return void 0 === s ? "" : null === s ? t(r, n) : Array.isArray(s) ? s.reduce(o(r), []).join("&") : t(r, n) + "=" + t(s, n)
+    }).filter(e => e.length > 0).join("&")
+  };
+
+  function o(e, t, n) {
+    return t in e ? Object.defineProperty(e, t, {
+      value: n,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }) : e[t] = n, e
+  }
+
+  function r(e, t) {
+    var n = Object.keys(e);
+    if (Object.getOwnPropertySymbols) {
+      var o = Object.getOwnPropertySymbols(e);
+      t && (o = o.filter((function (t) {
+        return Object.getOwnPropertyDescriptor(e, t).enumerable
+      }))), n.push.apply(n, o)
+    }
+    return n
+  }
+
+  function s(e) {
+    for (var t = 1; t < arguments.length; t++) {
+      var n = null != arguments[t] ? arguments[t] : {};
+      t % 2 ? r(Object(n), !0).forEach((function (t) {
+        o(e, t, n[t])
+      })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : r(Object(n)).forEach((function (t) {
+        Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t))
+      }))
+    }
+    return e
+  }
+
+  function i(e, t) {
+    if (null == e) return {};
+    var n, o, r = function (e, t) {
+      if (null == e) return {};
+      var n, o, r = {},
+        s = Object.keys(e);
+      for (o = 0; o < s.length; o++) n = s[o], t.indexOf(n) >= 0 || (r[n] = e[n]);
+      return r
+    }(e, t);
+    if (Object.getOwnPropertySymbols) {
+      var s = Object.getOwnPropertySymbols(e);
+      for (o = 0; o < s.length; o++) n = s[o], t.indexOf(n) >= 0 || Object.prototype.propertyIsEnumerable.call(e, n) && (r[n] = e[n])
+    }
+    return r
+  }
+
+  function a(e) {
+    var t = function (e, t) {
+      if ("object" != typeof e || null === e) return e;
+      var n = e[Symbol.toPrimitive];
+      if (void 0 !== n) {
+        var o = n.call(e, t || "default");
+        if ("object" != typeof o) return o;
+        throw new TypeError("@@toPrimitive must return a primitive value.")
+      }
+      return ("string" === t ? String : Number)(e)
+    }(e, "string");
+    return "symbol" == typeof t ? t : String(t)
+  }
+  class c {
+    constructor(e) {
+      this.keyDefined = t => t in e, this.getValue = t => e[t]
+    }
+    get(e) {
+      if (this.keyDefined(e)) return this.getValue(e);
+      throw new Error("Unknown configuration: ".concat(e))
+    }
+  }
+  const u = (new class {
+    constructor() {
+      this.variables = {}
+    }
+    build() {
+      return new c(this.variables)
+    }
+    addValue(e, t) {
+      if (void 0 === t) throw new Error('Failed to add "'.concat(e, '" property. The value cannot be undefined'));
+      if (e in this.variables) throw new Error('"'.concat(e, '" already has a value defined.'));
+      return this.variables[e] = t, this
+    }
+    addValueWithDefault(e, t, n) {
+      if (void 0 === n) throw new Error('Failed to add "'.concat(e, '" property. Default value cannot be undefined'));
+      return this.addValue(e, void 0 === t ? n : t)
+    }
+  }).addValue("NETWORK", "mainnet").addValue("MONEY_BUTTON_WEBAPP_PROXY_URI", "https://www.moneybutton.com").build().get("MONEY_BUTTON_WEBAPP_PROXY_URI");
+  class l {
+    constructor(e) {
+      o(this, "start", () => {
+        window.addEventListener("message", this._onMessageReceived, !1)
+      }), o(this, "enableDeliver", () => {
+        this._deliverMessages = !0, this._pendingMessages.forEach(e => this.targetWindow.postMessage(e, "*")), this._pendingMessages = []
+      }), o(this, "finalize", () => {
+        window.removeEventListener("message", this._onMessageReceived, !1)
+      }), o(this, "subscribe", (e, t) => {
+        this.handlers[e] = t
+      }), o(this, "_onMessageReceived", async e => {
+        if (e.source !== this.targetWindow) return;
+        if (!e.data || !e.data.v1) return;
+        const t = e.data.v1;
+        if (t.repliesTo) {
+          const e = this._replayQueue,
+            n = t.repliesTo,
+            {
+              [n]: {
+                resolve: o,
+                reject: r
+              }
+            } = e,
+            s = i(e, [n].map(a));
+          return this._replayQueue = s, void(t.errorResponse ? await r(t.payload, t.topic, t.messageId) : await o(t.payload, t.topic, t.messageId))
+        }
+        const n = this.handlers[t.topic];
+        if (n) try {
+          const e = await n(t.payload, t.topic, t.messageId);
+          t.reply && this.send("".concat(t.topic, ":reply"), e, {
+            repliesTo: t.messageId,
+            errorResponse: !1
+          })
+        } catch (e) {
+          console.error(e), t.reply && this.send("".concat(t.topic, ":reply"), {
+            message: e.message
+          }, {
+            repliesTo: t.messageId,
+            errorResponse: !0
+          })
+        }
+      }), o(this, "send", (e, t, n = {}) => {
+        const o = {
+          v1: s({
+            topic: e,
+            payload: t,
+            messageId: Math.floor(1e17 * Math.random()).toString()
+          }, n)
+        };
+        return this._deliverMessages ? this.targetWindow.postMessage(o, "*") : this._pendingMessages = [...this._pendingMessages, o], o
+      }), o(this, "sendWithReply", async (e, t) => new Promise((n, o) => {
+        const {
+          v1: {
+            messageId: r
+          }
+        } = this.send(e, t, {
+          reply: !0
+        });
+        this._replayQueue = s({}, this._replayQueue, {
+          [r]: {
+            resolve: n,
+            reject: o
+          }
+        })
+      })), o(this, "sendInsufficientBalanceError", () => {
+        const e = {
+          error: "insufficient balance",
+          popup: {
+            title: "Low balance",
+            message: "Your balance is too low to make this payment.",
+            buttonText: "Add Money",
+            buttonUrl: "".concat(u, "/money")
+          }
+        };
+        this.send("error.insufficient-balance", e)
+      }), o(this, "sendUnexpectedError", e => {
+        const t = {
+          error: "unexpected error",
+          popup: {
+            title: "Unexpected Error",
+            message: e.message
+          }
+        };
+        this.send("error.unexpected-error", t)
+      }), o(this, "sendCryptoOperationsError", e => {
+        const t = {
+          error: "crypto operations error",
+          popup: {
+            title: "Crypto Operations error",
+            message: e.message
+          }
+        };
+        this.send("error.crypto-operations-error", t)
+      }), o(this, "sendPaymentSuccess", e => {
+        const t = {
+          payment: e
+        };
+        this.send("payment-success", t)
+      }), o(this, "sendCryptoOperationsSuccess", e => {
+        const t = {
+          cryptoOperations: e
+        };
+        this.send("crypto-operations-success", t)
+      }), o(this, "sendNotLoggedInError", e => {
+        const t = {
+          error: "not logged in",
+          popup: {
+            title: "Money Button",
+            message: "Money Button is a simple payment system. Join Money Button to make this payment.",
+            buttonText: "Sign up",
+            buttonUrl: "".concat(u, "/register"),
+            buttonText2: "Log in",
+            buttonUrl2: "".concat(u, "/login")
+          }
+        };
+        this.send("error.not-logged-in", t)
+      }), o(this, "sendCompatibilityIssue", e => {
+        const t = {
+          error: "compatibility",
+          message: e.message,
+          popup: {
+            title: "Compatibility",
+            message: e.message
+          }
+        };
+        this.send("error.compatibility", t)
+      }), o(this, "sendSafaryIssueHint", () => {
+        this.send("error.safari-compatibility", {
+          error: "safari privacy",
+          popup: {
+            title: "Money Button",
+            message: "Money Button is a simple payment system. Enable Money Button on Safari and log in to make this payment.",
+            buttonUrl: "https://blog.moneybutton.com/2018/09/24/how-to-enable-money-button-on-safari-and-ios/",
+            buttonText: "Enable"
+          }
+        })
+      }), this.handlers = {}, this.targetWindow = e, this._pendingMessages = [], this._deliverMessages = !1, this._replayQueue = {}
+    }
+  }
+  let p = null;
+
+  function d() {
+    p && (p.parentNode.removeChild(p), p = null)
+  }
+
+  function m({
+    title: e,
+    message: t,
+    buttonText: n,
+    buttonUrl: o,
+    buttonText2: r,
+    buttonUrl2: s
+  }) {
+    d(), p = document.createElement("div"), p.setAttribute("style", "display: flex; justify-content: center; font-family: sans-serif;");
+    let i = document.getElementsByClassName("popup__moneybutton").item(0);
+    null === i && (i = function () {
+      const e = document.createElement("div");
+      return e.className = "popup__moneybutton", e.style.position = "relative", e.style.display = "flex", e.style.justifyContent = "center", e
+    }(), document.body.appendChild(i)), i.appendChild(p), p.innerHTML = '\n    <div class="close__moneybutton"></div>\n    <div class="hint__moneybutton">\n      <div class="content__moneybutton">\n        <span class="title__moneybutton">'.concat(e, '</span>\n        <span class="text__moneybutton">').concat(t, '</span>\n        <div class="buttonsWrapper__moneybutton">\n          ').concat(n ? '<a href="'.concat(o, '" target="_blank" rel="noopener noreferrer" class="button__moneybutton red__moneybutton">').concat(n, "</a>") : "", "\n          ").concat(r ? '<a href="'.concat(s, '" target="_blank" rel="noopener noreferrer" class="button__moneybutton nofill__moneybutton">').concat(r, "</a>") : "", "\n        </div>\n      </div>\n      <style>\n        .hint__moneybutton .button__moneybutton,\n        .hint__moneybutton .title__moneybutton{\n          font-weight:700\n        }\n        .hint__moneybutton .button__moneybutton,\n        .hint__moneybutton .content__moneybutton{\n            color:#fff;\n            box-sizing:border-box;\n            display:flex;\n            font-family: 'IBM Plex Sans', sans-serif;\n        }\n        .hint__moneybutton a{\n            text-decoration:none;\n        }\n        .hint__moneybutton{\n            min-width:254px;\n            position:fixed;\n            bottom: 10px;\n            right: 10px;\n            max-width: 300px;\n            z-index: 1000;\n        }\n        .hint__moneybutton .content__moneybutton{\n          top:0;\n          left:0;\n          right:0;\n          bottom:0;\n          z-index:1\n        }\n        .hint__moneybutton .content__moneybutton{\n            background-color:#191927;\n            padding:30px;\n            border-radius:10px;\n            bottom:19px;\n            left:0;\n            right:0;\n            flex-direction:column;\n            align-content:center;\n            align-items:flex-start;\n            min-width: 260px;\n        }\n        .hint__moneybutton .title__moneybutton{\n            font-size:20px;\n            margin-bottom:10px\n        }\n        .hint__moneybutton .text__moneybutton{\n            font-size:14px;\n            margin-bottom:20px\n        }\n        .hint__moneybutton .buttonsWrapper__moneybutton{\n            width:100%;\n            display:flex;\n            justify-content:space-between;\n            position:relative;\n            z-index:2\n        }\n        .hint__moneybutton .button__moneybutton{\n            text-align:center;\n            font-size:12px;\n            width:calc(50% - 10px);\n            height:35px;\n            padding:0 10px;\n            border-radius:20px;\n            align-items:center;\n            justify-content:center;\n            transition:all 250ms ease-out;\n            cursor:pointer\n        }\n        .hint__moneybutton .button__moneybutton.add__moneybutton {\n            width: auto;\n        }\n        .hint__moneybutton .button__moneybutton.red__moneybutton{\n            background-color:#e54d3f\n        }\n        .hint__moneybutton .button__moneybutton.red__moneybutton:hover{\n            background-color:#ce4134\n        }\n        .hint__moneybutton .button__moneybutton.nofill__moneybutton{\n            border:1px solid #fff\n        }\n        .hint__moneybutton .button__moneybutton.nofill__moneybutton:hover{\n            color:#191927;\n            background-color:#fff\n        }\n        .close__moneybutton {\n          background-color: rgba(255, 255, 255, 0.6);\n          position: fixed;\n          top: 0;\n          left: 0;\n          width: 100vw;\n          height: 100vh;\n          z-index: 999;\n        }\n        @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700');\n      </style>\n    </div>\n  "), document.getElementsByClassName("close__moneybutton").item(0).addEventListener("click", d)
+  }
+
+  function y(e) {
+    return "function" == typeof e
+  }
+
+  function b(e, t) {
+    return t.reduce((t, n) => (e.hasOwnProperty(n) && (t[n] = e[n]), t), {})
+  }
+
+  function h() {
+    const e = function () {
+      const e = document.createElement("iframe");
+      return e.style.border = "none", e.style.width = "1px", e.style.height = "1px", e.scrolling = "no", e.style.position = "fixed", e.style.bottom = "-1px", e.style.left = "-1px", e.src = "".concat("https://www.moneybutton.com", "/iframe/imb-payments"), e
+    }();
+    return document.body.appendChild(e), e
+  }
+  const f = ["amount", "to", "currency", "opReturn", "outputs", "cryptoOperations", "buttonId", "buttonData", "preserveOrder"],
+    g = ["amount", "currency", "to", "address", "userId", "script", "paymail"],
+    w = ["name", "method", "data", "dataEncoding", "value", "valueEncoding", "key", "algorithm", "publicKey", "paymail", "verified", "signature"],
+    _ = e => {
+      const t = b(e, f);
+      return t.outputs && (t.outputs = t.outputs.map(e => b(e, g))), t.cryptoOperations && (t.cryptoOperations = t.cryptoOperations.map(e => b(e, w))), JSON.parse(JSON.stringify(t))
+    };
+  class v {
+    constructor(e) {
+      this.token = e, this.pmClient = null, this.iframe = null, this.resetConnection()
+    }
+    async swipe(e) {
+      return document.body.contains(this.iframe) || await this.resetConnection(), this.pmClient.sendWithReply("imb.start-payment", {
+        authToken: this.token,
+        attributes: _(e)
+      })
+    }
+    async amountLeft() {
+      return document.body.contains(this.iframe) || await this.resetConnection(), await this.pmClient.sendWithReply("imb.amount-left", {
+        authToken: this.token
+      })
+    }
+    async resetConnection() {
+      return new Promise(e => {
+        this.pmClient && this.pmClient.finalize(), this.iframe = h(), this.pmClient = new l(this.iframe.contentWindow), this.pmClient.subscribe("error.insufficient-balance", e => m(e.popup)), this.pmClient.subscribe("error.too-long-mempool-chain", e => m(e.popup)), this.pmClient.subscribe("error.unexpected-error", e => m(e.popup)), this.pmClient.start(), this.iframe.onload = () => {
+          this.pmClient.enableDeliver(), e()
+        }
+      })
+    }
+  }
+  const x = "".concat("https://www.moneybutton.com", "/iframe");
+  class O {
+    constructor(e) {
+      this.iframe = document.createElement("iframe"), this.iframe.src = "".concat(x, "/").concat(e)
+    }
+    styleIframe(e) {
+      Object.assign(this.iframe.style, e)
+    }
+    attach(e) {
+      e.appendChild(this.iframe), this.iframe.contentWindow.onunload = () => {
+        null !== this.iframe.contentWindow && this.iframe.contentWindow.location.href !== x || (e.innerHTML = "")
+      }
+    }
+  }
+  class E {
+    constructor(e) {
+      this.storage = e, this.iframe = new O("onboard-new-user"), this.iframe.styleIframe({
+        border: "none",
+        width: "100%",
+        minHeight: "100vh"
+      })
+    }
+    start() {
+      const e = document.createElement("div");
+      e.style.position = "fixed", e.style.top = "0px", e.style.left = "0px", e.style.width = "100%", e.style.height = "100vh", e.style.zIndex = "1001", document.body.appendChild(e), this.iframe.attach(e)
+    }
+  }
+  const P = "".concat("https://www.moneybutton.com", "/iframe");
+
+  function k(e, t) {
+    const n = function (e) {
+      const t = document.createElement("iframe");
+      return t.style.border = "none", t.style.width = "100%", t.style.minHeight = "100vh", t.src = "".concat(P, "/").concat(e), t
+    }(t);
+    return e.appendChild(n), n.contentWindow.onunload = () => {
+      null !== n.contentWindow && n.contentWindow.location.href !== P || (e.innerHTML = "")
+    }, n
+  }
+  const C = ["permission", "suggestedAmount", "minimumAmount", "clientIdentifier", "onNewPermissionGranted"];
+  const M = ["to", "amount", "currency", "label", "successMessage", "opReturn", "outputs", "cryptoOperations", "clientIdentifier", "buttonId", "buttonData", "type", "onPayment", "onError", "onLoad", "devMode", "editable", "disabled", "preserveOrder"],
+    j = new Map;
+
+  function I(e, t = {}) {
+    j.has(e) ? function (e, t) {
+      const n = j.get(e);
+      n.send("attributes-updated", T(t)), n.subscribe("payment-success", e => S(e, t)), n.subscribe("crypto-operations-success", e => L(e, t)), n.subscribe("error.insufficient-balance", e => W(e, t)), n.subscribe("error.unexpected-error", e => W(e, t)), n.subscribe("error.crypto-operations-error", e => W(e, t)), n.subscribe("error.not-logged-in", e => W(e, t)), n.subscribe("error.compatibility", e => W(e, t)), n.subscribe("error.safari-compatibility", e => W(e, t)), n.subscribe("error.too-long-mempool-chain", e => W(e, t)), n.subscribe("error", e => W(e, t))
+    }(e, t) : function (e, t) {
+      ! function (e, t) {
+        if (!(e instanceof Element)) throw new Error("The first argument must be of type Element.");
+        if (!(e instanceof Object) || 0 === Object.keys(t).length) throw new Error("Please, specify the button's attributes.");
+        if (void 0 !== t.buttonData && "string" != typeof t.buttonData) throw new Error('"buttonData" should be a string.')
+      }(e, t);
+      const n = function (e = {}) {
+        const t = document.createElement("iframe");
+        return t.style.border = "none", t.style.width = "280px", t.style.height = "50px", t.scrolling = "no", t.src = N(), t
+      }(t);
+      e.appendChild(n), e.style.position = "relative", e.style.display = "inline-block", e.style.width = "280px", e.style.height = "50px", n.contentWindow.onunload = () => {
+        null !== n.contentWindow && n.contentWindow.location.href !== N() || (j.delete(e), e.innerHTML = "")
+      };
+      const o = new l(n.contentWindow);
+      o.send("initial-attributes", T(t), {}), o.subscribe("ready", () => {
+        o.enableDeliver(), t.onLoad && "function" == typeof t.onLoad && t.onLoad()
+      }), o.subscribe("payment-success", e => S(e, t)), o.subscribe("crypto-operations-success", e => L(e, t)), o.subscribe("error.insufficient-balance", e => W(e, t)), o.subscribe("error.unexpected-error", e => W(e, t)), o.subscribe("error.crypto-operations-error", e => W(e, t)), o.subscribe("error.not-logged-in", e => W(e, t)), o.subscribe("error.compatibility", e => W(e, t)), o.subscribe("error.safari-compatibility", e => W(e, t)), o.subscribe("error.too-long-mempool-chain", e => W(e, t)), o.subscribe("error", e => W(e, t)), o.start(), j.set(e, o)
+    }(e, t)
+  }
+
+  function T(e) {
+    return {
+      to: e.to,
+      amt: e.amount,
+      edt: e.editable,
+      ccy: e.currency,
+      lbl: e.label,
+      scsmsg: e.successMessage,
+      opd: e.opReturn,
+      os: JSON.stringify(e.outputs),
+      cid: e.clientIdentifier,
+      bid: e.buttonId,
+      bdt: e.buttonData,
+      t: e.type,
+      dev: e.devMode,
+      dsbd: e.disabled,
+      crop: JSON.stringify(e.cryptoOperations),
+      pord: e.preserveOrder
+    }
+  }
+
+  function N() {
+    return "".concat("https://www.moneybutton.com", "/iframe/v2?").concat(n({
+      format: "postmessage"
+    }))
+  }
+
+  function S(e, t) {
+    const {
+      payment: n
+    } = e;
+    n && "function" == typeof t.onPayment && t.onPayment.call(window, n)
+  }
+
+  function L(e, t) {
+    const {
+      cryptoOperations: n
+    } = e;
+    n && "function" == typeof t.onCryptoOperations && t.onCryptoOperations.call(window, n)
+  }
+
+  function W(e, t) {
+    const {
+      error: n,
+      popup: o
+    } = e;
+    o && m(o), n && "function" == typeof t.onError && t.onError.call(window, new Error(n))
+  }
+
+  function B(e) {
+    const t = {};
+    for (const n in e) {
+      const o = e[n];
+      if (M.includes(n)) switch (n) {
+        case "outputs":
+          let e;
+          try {
+            e = JSON.parse(o)
+          } catch (t) {
+            e = null
+          }
+          e instanceof Array ? t[n] = e : console.warn("The value provided for ".concat(n, " is not a valid JSON array."));
+          break;
+        case "cryptoOperations":
+          let r;
+          try {
+            r = JSON.parse(o)
+          } catch (e) {
+            r = []
+          }
+          r instanceof Array ? t[n] = r : console.warn("cryptoOperations should be an array");
+          break;
+        case "devMode":
+          t[n] = "true" === o;
+          break;
+        case "onPayment":
+        case "onError":
+        case "onLoad":
+          "function" == typeof window[o] ? t[n] = window[o] : console.warn("The value provided for ".concat(n, " is not a function in the global scope."));
+          break;
+        default:
+          t[n] = o
+      } else console.warn("Unexpected data attribute: ".concat(n, "."))
+    }
+    return t
+  }
+  return document.addEventListener("DOMContentLoaded", (function () {
+    if (window.moneyButton !== undefined && window.moneyButton.alreadyLoaded) return;
+    if (window.moneyButton !== undefined) window.moneyButton.alreadyLoaded = !0;
+    const e = document.getElementsByClassName("money-button");
+    for (let t = 0; t < e.length; ++t) {
+      const n = e.item(t);
+      try {
+        const e = B(n.dataset);
+        Object.keys(e).length > 0 && I(n, e), console.log("Money Button: added button.")
+      } catch (e) {
+        console.error("Money Button: adding button failed.", e)
+      }
+    }
+  })), e.IMB = class {
+    constructor(e) {
+      this.config = b(e, C), e.permission ? this.paymentProcessor = new v(e.permission) : this.paymentProcessor = null
+    }
+    async swipe(e) {
+      null === this.paymentProcessor && await this.askForPermission();
+      try {
+        const t = await this.paymentProcessor.swipe(e);
+        return y(e.onCryptoOperations) && e.onCryptoOperations(t.cryptoOperations), y(e.onPayment) && e.onPayment(t.payment), t
+      } catch (t) {
+        if (y(e.onError) && e.onError(t), "Not enough authorized amount." === t.message) {
+          return await this.renewPermission(), await this.paymentProcessor.swipe(e)
+        }
+        if ("invalid token" === t.message) return this.paymentProcessor = null, this.swipe(e);
+        throw t
+      }
+    }
+    async getPermission() {
+      return null === this.paymentProcessor && await this.askForPermission(), this.paymentProcessor.token
+    }
+    async amountLeft(e) {
+      if (null === this.paymentProcessor) throw new Error("No active permission.");
+      return this.paymentProcessor.amountLeft(e)
+    }
+    async askForPermission(e = {}) {
+      const t = b(this.config, ["clientIdentifier", "suggestedAmount", "minimumAmount"]);
+      e.amount && e.currency && (t.suggestedAmount = {
+        amount: e.amount,
+        currency: e.currency
+      }), e = b(t, ["clientIdentifier", "suggestedAmount", "minimumAmount"]);
+      const n = {
+          suggestedAmount: {
+            amount: "5",
+            currency: "USD"
+          },
+          minimumAmount: {
+            amount: "0.25",
+            currency: "USD"
+          },
+          ...t,
+          ...e
+        },
+        o = document.createElement("div");
+      o.style.position = "fixed", o.style.top = "0px", o.style.left = "0px", o.style.width = "100%", o.style.height = "auto", o.style.zIndex = "1001", document.body.appendChild(o);
+      const r = k(o, "imb-permission-grant");
+      return this._askIframeForPermition(n, o, r)
+    }
+    async renewPermission(e) {
+      const t = {
+          suggestedAmount: {
+            amount: "5",
+            currency: "USD"
+          },
+          minimumAmount: {
+            amount: "0.25",
+            currency: "USD"
+          },
+          ...b(this.config, ["clientIdentifier", "suggestedAmount", "minimumAmount"])
+        },
+        n = document.createElement("div");
+      n.style.position = "fixed", n.style.width = "100%", n.style.height = "350px", n.style.bottom = "20px", n.style.left = "0", n.style.display = "flex", n.style.justifyContent = "center", n.style.pointerEvents = "none", n.style.zIndex = "1001", document.body.appendChild(n);
+      const o = k(n, "imb-renew-permission");
+      return o.style.maxWidth = "550px", o.style.width = "90%", o.style.pointerEvents = "auto", this._askIframeForPermition(t, n, o)
+    }
+    async _askIframeForPermition(e, t, n) {
+      return new Promise((o, r) => {
+        const s = new l(n.contentWindow);
+        s.enableDeliver(), s.subscribe("ready", () => {
+          s.send("imb.request-swipe-permission", {
+            ...e
+          })
+        }), s.subscribe("imb.permission-granted", e => {
+          if (this.paymentProcessor = new v(e.token), y(this.config.onNewPermissionGranted)) try {
+            this.config.onNewPermissionGranted(e.token)
+          } catch (e) {
+            console.error("There was a problem when attempting to save the permission code:", e.message), console.error(e)
+          }
+          s.finalize(), document.body.removeChild(t),
+            function (e) {
+              const t = document.createElement("div");
+              t.style.position = "fixed", t.style.bottom = "20px", t.style.left = "0", t.style.width = "100%", t.innerHTML = "\n  <div class='alert__moneybutton' role='alert'>\n    <h3 class='imb-success-popup_title__moneybutton'>Permission granted</h3>\n    <span class='imb-success-popup_text__moneybutton'>\n      You can remove, change or renew your <i>".concat(e, "</i> permission\n      from the settings page inside your\n      <a rel='noopener noreferrer' target='_blank' class='imb-success-popup_link__moneybutton' href='").concat("https://www.moneybutton.com", "/settings/apps#yourPermissions'>Money Button wallet</a>\n    </span>\n  </div>\n  <style>\n  .alert__moneybutton {\n    background-color: #4772F6;\n    padding: 45px 40px 40px 40px;\n    width: 90%;\n    max-width: 400px;\n    margin-right: auto;\n    margin-left: auto;\n    box-sizing: border-box;\n    border-radius: 20px 20px 0 20px;\n  }\n  .imb-success-popup_text__moneybutton, .imb-success-popup_title__moneybutton {\n    font-size: 12px;\n    font-family: 'IBM Plex Sans', sans-serif;\n    color: white;\n  }\n\n  .imb-success-popup_text__moneybutton {\n    font-weight: 500;\n  }\n\n  .imb-success-popup_title__moneybutton {\n    font-size: 18px;\n    margin-top: 0;\n    padding-top: 0;\n  }\n\n  .imb-success-popup_link__moneybutton {\n    color: white;\n    text-decoration: none;\n    font-weight: bold;\n  }\n  </style>\n  "), document.body.appendChild(t);
+              const n = setTimeout(() => {
+                  document.body.removeChild(t), document.body.removeEventListener("click", o)
+                }, 6e3),
+                o = e => {
+                  t.parentNode.removeChild(t), clearTimeout(n), e.currentTarget.removeEventListener(e.type, o)
+                };
+              document.body.addEventListener("click", o)
+            }(e.app.name), o(this)
+        }), s.subscribe("imb.permission-dennied", e => {
+          s.finalize(), document.body.removeChild(t), r(e)
+        }), s.subscribe("error.not-logged-in", e => {
+          m(e.popup), s.finalize(), document.body.removeChild(t), r(new Error("no-user-logged-in"))
+        }), s.subscribe("onboard-new-user", () => {
+          s.finalize(), document.body.removeChild(t), new E(window.localStorage).start(), r(new Error("no-user-logged-in"))
+        }), s.subscribe("error.insufficient-balance", e => {
+          m(e.popup)
+        }), s.subscribe("error.safari-compatibility", e => {
+          m(e.popup)
+        }), s.start()
+      })
+    }
+  }, e.render = I, e
+}({});
+
+module.exports = {
+  IMB: moneyButton.IMB,
+  render: moneyButton.render
+}
 //# sourceMappingURL=moneybutton.js.map
-module.exports = moneyButton;
