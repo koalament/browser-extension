@@ -1,6 +1,6 @@
 {
   "name": "Koalament",
-  "version": "1.0.0",
+  "version": "1.51.12",
   "manifest_version": 2,
   "description": "Koala open comment",
   "homepage_url": "https://koalament.io",
@@ -27,10 +27,7 @@
     "default_popup": "index.html"
   },
   "permissions": [
-    "https://*/*",
-    "http://*/*",
     "activeTab",
-    "storage",
-    "tabs"
+    "storage"
   ]
 }
